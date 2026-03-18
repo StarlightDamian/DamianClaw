@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "python",
+      "args": [".claude/skills/custom-playwright-mcp/start_mcp.py"]
+    }
+  }
+}
