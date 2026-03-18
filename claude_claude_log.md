@@ -30,3 +30,20 @@ Tip: Run claude --continue or claude --resume to resume a conversation
 
 ## 日志
 
+```
+ /find-skills 使用playwright来高效操作浏览器 通过CLI挂载playwright MCP                                                                                                                 
+将具体场景登录、抓取、点击作为prompt输入，利用代码生成能力和MCP的上下文理解自动编写DOM强依赖具体的DOM节点的python playwright脚本，在底层飞速操作浏览器
+
+ 推荐安装：
+  # 1. MCP 构建工具（用于挂载 Playwright MCP）
+  npx skills add anthropics/skills@mcp-builder -g -y
+
+  # 2. Playwright 最佳实践
+  npx skills add currents-dev/playwright-best-practices-skill@playwright-best-practices -g -y
+
+  # 3. Playwright 代码生成
+  npx skills add github/awesome-copilot@playwright-generate-test -g -y
+
+
+```
+
