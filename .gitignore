@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+distribute-build/
+downloads/
+eggs/.egg-info/
+.installed.cfg
+*.egg
+*.egg-info/
+lib/python*/site-packages/
+
+# Virtual environment
+venv/
+env/
+.venv
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# Environment variables
+.env
+.env.*
+*.env
+
+# Output
+output/
+*.log
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if needed)
+node_modules/
