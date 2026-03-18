@@ -1,0 +1,121 @@
+{
+  "url": "https://doc.fastadmin.net/doc/1207.html",
+  "title": "标签输入 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "标签输入组件可用于快速的为文本框添加标签输入功能，目前在FastAdmin1.3.0+版本支持该功能。\n\n该组件基于Bootstrap-tagsinput进行二次开发，除了动态获取typeahead配置不同外，其余属性均相同，因此可直接查询Bootstrap-tagsinput的文档：http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/\n\n以上为常用属性，更多属性请参考Bootstrap-tagsinput文档\n\n请直接参考Bootstrap-tagsinput的文档：http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/\n\n原生的Bootstrap-tagsinput是需要配合typeahead来实现，但是在FastAdmin中是需要配合自动完成(Autocomplete)组件来实现。\n\n我们只需要传递autocomplete属性即可，其中url为数据源地址。\n\n数据源的格式我们可以参考左侧自动完成(Autocomplete)组件章节的文档。\n\nBootstrap-tagsinput：https://github.com/bootstrap-tagsinput/bootstrap-tagsinput",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "标签输入",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "使用示例",
+      "id": "使用示例-1"
+    },
+    {
+      "level": "h3",
+      "text": "常用属性",
+      "id": "常用属性-2"
+    },
+    {
+      "level": "h3",
+      "text": "方法和事件",
+      "id": "方法和事件-3"
+    },
+    {
+      "level": "h3",
+      "text": "动态下拉提示",
+      "id": "动态下拉提示-4"
+    },
+    {
+      "level": "h3",
+      "text": "特别感谢",
+      "id": "特别感谢-5"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<!--常规渲染-->\n<input type=\"text\" class=\"form-control\" data-role='tagsinput' />\n<!--设定默认值-->\n<input type=\"text\" class=\"form-control\" data-role='tagsinput' value=\"你好,世界\" />\n<!--自定义属性-->\n<input type=\"text\" class=\"form-control\" data-role='tagsinput' value=\"你好,世界\" data-tagsinput-options='{\"maxTags\":4, \"trimValue\":true}' />",
+      "language": "html"
+    },
+    {
+      "code": "$(\"#test1\").data(\"tagsinput-options\", {\n    \"maxTags\":4, \n    \"trimValue\":true,\n    \"onTagExists\":function(){\n        //处理回调事件\n    }\n});",
+      "language": "json"
+    },
+    {
+      "code": "<input type=\"text\" class=\"form-control\" data-role='tagsinput' data-tagsinput-options='{\"autocomplete\":{\"url\":\"/index/ajax/autocomplete\"}}' />",
+      "language": "json"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

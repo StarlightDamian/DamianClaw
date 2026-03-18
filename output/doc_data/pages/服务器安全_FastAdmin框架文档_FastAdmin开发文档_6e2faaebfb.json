@@ -1,0 +1,145 @@
+{
+  "url": "https://doc.fastadmin.net/doc/171.html",
+  "title": "服务器安全 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "服务器安全涉及操作系统安全、目录安全、站点配置和运行配置等多个方面。\n\n生产用的操作系统强烈推荐使用 LTS 版本，留意操作系统的更新，并定期更新操作系统。\n\n在实际生产中，目录安全是比较容易被忽略的配置，因此我们更应该加倍注意防范，以免造成不必要的损失。\n\n首先我们建议在生产环境只开放uploads和runtime目录的读写权限，其次还需要关闭uploads目录执行PHP脚本的权限，假设时服务端uploads目录有读写权限且有PHP的脚本执行权限，那么当有恶意脚本被上传到这个目录并被执行时，会导致服务器数据泄漏或恶意修改，从而造成损失。\n\n为避免不必要的损失，在生产环境下建议使用以下命令进行目录权限设置\n\n通过以上的目录权限配置还不够，我们还需要继续对服务器做WEB配置，以限制PHP脚本的运行\n\nNginx可以通过以下配置禁止PHP脚本执行\n\nApache可以通过在.htaccess中配置来禁用PHP脚本执行\n\n其次在新增网站配置时务必绑定public目录为运行目录，同时启用open_basedir限制只允许FastAdmin的根目录，例如：fastcgi_param PHP_VALUE \"open_basedir=/var/www/fastadmin/:/tmp/:/proc/\";\n\n通常也建议修改php.ini，禁用不安全的函数，配置如disable_functions = passthru,exec,system,chroot,chgrp,chown,shell_exec,proc_open,proc_get_status,popen,ini_alter,ini_restore,dl,openlog,syslog,readlink,symlink,popepassthru\n\n默认我们在请求txt/doc/pdf/ppt等类型的文件时会在浏览器进行渲染，为了安全，强烈建议当请求此类文件时进行下载而不是预览，我们可以按以下方法进行修改服务器配置来实现。\n\nNginx可以修改配置文件(宝塔面板可直接在面板伪静态中添加)\n\nApache可以通过修改public/.htaccess配置来实现\n\n首先打开application/config.php，做以下几项配置\n\n其次前台开启全局过滤，早期FastAdmin版本并未开启全局过滤。你也可以检查下你的代码。请手动修改以下代码：\n\n注意修改其中的$this->request->filter过滤代码，可以修改成：\n\n同时也可以参考https://ask.fastadmin.net/article/7534.html 设置全局 HtmlPurifier 安全过滤\n\n最后务必修改后台管理入口，新版 FastAdmin 会随机生成后台入口，可以自定义修改后台入口文件，但请勿将入口改为容易被猜测到的入口文件，以后可以安全的从我们自定义的后台入口进行登录。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "服务器安全",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "操作系统安全",
+      "id": "操作系统安全-1"
+    },
+    {
+      "level": "h3",
+      "text": "目录安全",
+      "id": "目录安全-2"
+    },
+    {
+      "level": "h3",
+      "text": "WEB配置",
+      "id": "WEB配置-3"
+    },
+    {
+      "level": "h3",
+      "text": "下载配置",
+      "id": "下载配置-4"
+    },
+    {
+      "level": "h3",
+      "text": "运行配置",
+      "id": "运行配置-5"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "chown www:www /var/www/yoursite -R\nchmod 555 /var/www/yoursite -R\nchmod u+w /var/www/yoursite/runtime -R\nchmod u+w /var/www/yoursite/public/uploads -R",
+      "language": "sass"
+    },
+    {
+      "code": "location ~ ^/(uploads|assets)/.*\\.(php|php5|jsp)$ {\n    deny all;\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "RewriteEngine on RewriteCond % !^$\nRewriteRule uploads/(.*).(php)$ – [F]",
+      "language": "unknown"
+    },
+    {
+      "code": "<Directory \"/www/yoursite/public/uploads\">\n  <Files ~ \".php\">\n      Order allow,deny\n      Deny from all\n  </Files>\n</Directory>",
+      "language": "jsx"
+    },
+    {
+      "code": "location ~ .*\\.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx)$ {\n    add_header Content-Disposition attachment;\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "<FilesMatch \"\\.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx)$\">\n   ForceType application/octet-stream\n   Header set Content-Disposition attachment\n</FilesMatch>",
+      "language": "jsx"
+    },
+    {
+      "code": "app_debug 设置为 false\napp_trace 设置为 false\ndeny_module_list 添加 admin，然后将public目录下的admin.php重命名，新版本FastAdmin已经自动禁用和重命名 \ncookie.httponly 设置为 true\ncookie.secure 设置为 true   //前提是你的网站仅提供https访问",
+      "language": "unknown"
+    },
+    {
+      "code": "application/common/controller/Frontend.php\napplication/common/controller/Api.php",
+      "language": "unknown"
+    },
+    {
+      "code": "$this->request->filter('trim,strip_tags,htmlspecialchars');",
+      "language": "php"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

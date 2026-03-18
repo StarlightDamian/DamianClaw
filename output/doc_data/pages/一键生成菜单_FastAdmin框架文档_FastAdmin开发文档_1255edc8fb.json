@@ -1,0 +1,108 @@
+{
+  "url": "https://doc.fastadmin.net/doc/161.html",
+  "title": "一键生成菜单 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "FastAdmin可通过命令控制台快速的一键生成后台的权限节点菜单规则，同时后台的管理菜单也会同步改变，操作非常简单。\n\n首先确保已经将FastAdmin配置好，数据库连接正确，同时确保已经通过上一步的一键生成CRUD已经生成了test的CRUD。\n\n请确保php所在的目录已经加入到系统环境变量，否则会提示找不到该命令。\n\n打开命令行控制台进入到你的站点根目录，也就是think文件所在的目录。\n\n更多CRUD一键生成可使用的参数请使用php think menu --help查看。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "一键生成菜单",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "准备工作",
+      "id": "准备工作-1"
+    },
+    {
+      "level": "h3",
+      "text": "常用命令",
+      "id": "常用命令-2"
+    },
+    {
+      "level": "h3",
+      "text": "常见问题",
+      "id": "常见问题-3"
+    },
+    {
+      "level": "h3",
+      "text": "使用范例",
+      "id": "使用范例-4"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "//一键生成test控制器的权限菜单\nphp think menu -c test\n//一键生成mydir/test控制器的权限菜单\nphp think menu -c mydir/test\n//删除test控制器生成的菜单\nphp think menu -c test -d 1\n//一键生成所有控制器的权限菜单，执行前请备份数据库。\nphp think menu -c all-controller",
+      "language": "php"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

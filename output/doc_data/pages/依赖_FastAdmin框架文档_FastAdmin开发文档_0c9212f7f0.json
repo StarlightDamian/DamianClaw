@@ -1,0 +1,102 @@
+{
+  "url": "https://doc.fastadmin.net/doc/196.html",
+  "title": "依赖 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "在FastAdmin中如果需要使用Bootstrap-table，需要使用require引入table模块。table模块对应的是assets/js/require-table.js文件，FastAdmin做了许多通用方法和默认值操作。\n\n由于表格列表常用于后台管理列表，后台已经默认引入了表格相关的CSS文件，在前台未引入相关的CSS文件，如果你需要在前台使用到Bootstrap-table，则需要手动载入表格相关的CSS文件。如下：",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "依赖",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "载入依赖",
+      "id": "载入依赖-1"
+    },
+    {
+      "level": "h3",
+      "text": "引入CSS",
+      "id": "引入CSS-2"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "require(['table'], function(Table){\n    //编写实例化代码\n    //使用Table对象\n});",
+      "language": "javascript"
+    },
+    {
+      "code": "<link rel=\"stylesheet\" type=\"text/css\" href=\"__CDN__/assets/libs/bootstrap-table/dist/bootstrap-table.min.css\"/>",
+      "language": "html"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

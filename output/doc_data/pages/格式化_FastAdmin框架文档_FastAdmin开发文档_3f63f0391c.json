@@ -1,0 +1,111 @@
+{
+  "url": "https://doc.fastadmin.net/doc/195.html",
+  "title": "格式化 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "在表格初始化的字段列配置中我们通常可以看到以下的代码\n\n其中formatter有以下可配置的方法，用好以下的渲染方法可以让你的开发更加便捷。\n\n如果框架自带的格式化不满足的使用，可以使用自定义的格式化方法，格式如下：\n\nbuttons按钮组配置支持使用数组，格式如下：",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "格式化",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "格式化方法",
+      "id": "格式化方法-1"
+    },
+    {
+      "level": "h2",
+      "text": "自定义格式化方法",
+      "id": "自定义格式化方法-1"
+    },
+    {
+      "level": "h2",
+      "text": "按钮组配置",
+      "id": "按钮组配置-2"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "table.bootstrapTable({\n    url: $.fn.bootstrapTable.defaults.extend.index_url,\n    columns: [\n        [\n            {checkbox: true},\n            {field: 'id', title: __('Id')},\n            {field: 'type', title: __('Type'), operate: false, searchList: Config.searchList, formatter: Table.api.formatter.normal},\n            {field: 'name', title: __('Name'), align: 'left'},\n            {field: 'nickname', title: __('Nickname')},\n            {field: 'intro', title: __('Intro'), formatter: Table.api.formatter.content, class: 'autocontent', hover:true},\n            {field: 'flag', title: __('Flag'), formatter: Table.api.formatter.flag},\n            {field: 'image', title: __('Image'), operate: false, events: Table.api.events.image, formatter: Table.api.formatter.image},\n            {field: 'weigh', title: __('Weigh')},\n            {field: 'status', title: __('Status'), operate: false, formatter: Table.api.formatter.status},\n            {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}\n        ]\n    ]\n});",
+      "language": "json"
+    },
+    {
+      "code": "table.bootstrapTable({\n    url: $.fn.bootstrapTable.defaults.extend.index_url,\n    columns: [\n        [\n            {checkbox: true},\n            {field: 'id', title: __('Id')},\n            {field: 'intro', title: __('Intro'), formatter: function(value, row, index) {\n                //value：intro字段的值，在开启escape时，value值已经自动做转义处理\n                //row：当前行所有原始字段的数据，注意row下的所有数据均未做转义处理，需自行做好转义处理\n                //index：当前行索引\n                //示例：\n                return value + \" - \" + parseInt(row.id);\n            }\n        ]\n    ]\n});",
+      "language": "json"
+    },
+    {
+      "code": "buttons: [\n    {\n        name: 'add', //唯一标识、权限标识\n        dropdown: '', //按钮下拉分组，默认为不分组\n        text: '同意', //按钮显示的文字，支持function\n        title: '我是标题', //按钮显示的文字，支持function\n        classname: 'btn btn-info btn-xs btn-dialog', //按钮的class，支持btn-dialog/btn-ajax/btn-addtabs\n        icon: 'fa fa-plus', //按钮的图标\n        url: 'department/index/add/parent_id/{ids}', //按钮的链接，支持使用{字段名}来占位替换，支持function\n        confirm: '是否同意该请求？', //点击按钮后的确认框，支持function\n        refresh: true, //操作完成后是否刷新列表\n        disable: function(row){}, //判断按钮是否禁用，支持function\n        visible: function(row){}, //判断按钮是否可见，支持function\n        hidden: function(row){}, //判断按钮是否隐藏，支持function\n        extend: '', //扩展的扩展属性，FastAdmin1.4.0+支持function\n    },\n    {\n        ...\n    }\n]",
+      "language": "sass"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

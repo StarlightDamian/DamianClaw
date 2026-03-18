@@ -1,0 +1,107 @@
+{
+  "url": "https://doc.fastadmin.net/doc/736.html",
+  "title": "日期时间区间 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "在FastAdmin中的日期时间区间组件采用的是Bootstrap-daterangepicker插件\n\n我们在使用只可以为文本框添加一个class为datetimerange的值即可自动添加日期时间区间选择框。\n\n同时我们还可以通过配置以下属性来自定义我们日期选择器的功能\n\n如果你需要捕获元素值变更后的事件，可以通过以下方式来实现，如：",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "日期时间区间",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "使用示例",
+      "id": "使用示例-1"
+    },
+    {
+      "level": "h3",
+      "text": "常用属性",
+      "id": "常用属性-2"
+    },
+    {
+      "level": "h3",
+      "text": "事件捕获",
+      "id": "事件捕获-3"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<input type=\"text\" class=\"form-control datetimerange\" placeholder=\"指定日期时间\" />\n\n<input type=\"text\" class=\"form-control datetimerange\" placeholder=\"指定日期时间\" value=\"2021-03-30 00:00:00 - 2021-03-30 23:59:59\" />\n\n<input type=\"text\" class=\"form-control datetimerange\" data-locale='{\"format\":\"YYYY-MM-DD\"}' placeholder=\"指定日期\" value=\"2021-03-30 - 2021-03-30\" />",
+      "language": "json"
+    },
+    {
+      "code": "$(\"#c-createtime\").on(\"blur\", function(){\n    //回调事件\n});",
+      "language": "r"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "url": "https://doc.fastadmin.net/doc/163.html",
+  "title": "一键生成API文档 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "FastAdmin中的一键生成API文档可以在命令行或后台一键生成我们API接口的接口测试文档，可以直接在线模拟接口请求，查看参数示例和返回示例。\n\n请确保你的API模块下的控制器代码没有语法错误，控制器类注释、方法名注释完整，注释规则请参考下方注释规则。\n\n请确保你的FastAdmin已经安装成功且能正常登录后台。\n\n请确保php所在的目录已经加入到系统环境变量，否则会提示找不到该命令。\n\n打开命令行控制台进入到你的站点根目录，也就是think文件所在的目录。\n\n在我们的控制器中通常分为两部分注释，一是控制器头部的注释，二是控制器方法的注释。\n\n如果需要修改生成API文档的模板，可以自行对模板文件：application/admin/command/Api/template/index.html 进行二次开发。\n\n如果控制器的方法是private或protected的，则将不会生成相应的API文档。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "一键生成API文档",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "准备工作",
+      "id": "准备工作-1"
+    },
+    {
+      "level": "h3",
+      "text": "常用命令",
+      "id": "常用命令-2"
+    },
+    {
+      "level": "h3",
+      "text": "参数介绍",
+      "id": "参数介绍-3"
+    },
+    {
+      "level": "h3",
+      "text": "注释规则",
+      "id": "注释规则-4"
+    },
+    {
+      "level": "h3",
+      "text": "标准范例",
+      "id": "标准范例-5"
+    },
+    {
+      "level": "h3",
+      "text": "文档模板",
+      "id": "文档模板-6"
+    },
+    {
+      "level": "h3",
+      "text": "常见问题",
+      "id": "常见问题-7"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "//一键生成API文档\nphp think api --force=true\n//指定https://www.example.com为API接口请求域名,默认为空\nphp think api -u https://www.example.com --force=true\n//输出自定义文件为myapi.html,默认为api.html\nphp think api -o myapi.html --force=true\n//修改API模板为mytemplate.html，默认为index.html\nphp think api -e mytemplate.html --force=true\n//生成指定控制器Demo的API文档\nphp think api -r Demo --force=true\n//修改标题为Demo,作者为Lily\nphp think api -t Demo -a Lily --force=true\n//生成插件标识为cms的API文档\nphp think api -a cms -o cmsapi.html --force=true\n//查看API接口命令行帮助\nphp think api -h",
+      "language": "php"
+    },
+    {
+      "code": "-u, --url[=URL]            默认API请求URL地址 [default: \"\"]\n-m, --module[=MODULE]      模块名(admin/index/api) [default: \"api\"]\n-a, --addon[=ADDON]      插件标识(addons目录下的插件标识) [default: \"\"]\n-o, --output[=OUTPUT]      输出文件 [default: \"api.html\"]\n-e, --template[=TEMPLATE]  模板文件 [default: \"index.html\"]\n-f, --force[=FORCE]        覆盖模式 [default: false]\n-t, --title[=TITLE]        文档标题 [default: \"FastAdmin\"]\n-c, --class[=CLASS]        扩展类 (支持多个值)\n-l, --language[=LANGUAGE]  语言 [default: \"zh-cn\"]\n-r,  --controller=CONTROLLER  控制器，默认为controller目录下的所有控制器(支持多个值),FastAdmin 1.3.0+支持",
+      "language": "sass"
+    },
+    {
+      "code": "<?php\n\nnamespace app\\api\\controller;\n\n/**\n * 测试API控制器\n */\nclass Test extends \\app\\common\\controller\\Api\n{\n\n    // 无需验证登录的方法\n    protected $noNeedLogin = ['test'];\n    // 无需要判断权限规则的方法\n    protected $noNeedRight = ['*'];\n\n    /**\n     * 首页\n     *\n     * 可以通过@ApiInternal忽略请求的方法\n     * @ApiInternal\n     */\n    public function index()\n    {\n        return 'index';\n    }\n\n    /**\n     * 私有方法\n     * 私有的方法将不会出现在文档列表\n     */\n    private function privatetest()\n    {\n        return 'private';\n    }\n\n    /**\n     * 测试方法\n     *\n     * @ApiTitle    (测试名称)\n     * @ApiSummary  (测试描述信息)\n     * @ApiSector   (测试分组)\n     * @ApiMethod   (POST)\n     * @ApiRoute    (/api/test/test/id/{id}/name/{name})\n     * @ApiHeaders  (name=token, type=string, required=true, description=\"请求的Token\")\n     * @ApiParams   (name=\"id\", type=\"integer\", required=true, description=\"会员ID\")\n     * @ApiParams   (name=\"name\", type=\"string\", required=true, description=\"用户名\")\n     * @ApiParams   (name=\"data\", type=\"object\", sample=\"{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}\", description=\"扩展数据\")\n     * @ApiReturnParams   (name=\"code\", type=\"integer\", required=true, sample=\"0\")\n     * @ApiReturnParams   (name=\"msg\", type=\"string\", required=true, sample=\"返回成功\")\n     * @ApiReturnParams   (name=\"data\", type=\"object\", sample=\"{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}\", description=\"扩展数据返回\")\n     * @ApiReturn   ({\n        'code':'1',\n        'mesg':'返回成功'\n     * })\n     */\n    public function test($id = '', $name = '')\n    {\n        $this->success(\"返回成功\", $this->request->request());\n    }\n\n}",
+      "language": "php"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

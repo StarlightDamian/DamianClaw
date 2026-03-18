@@ -1,0 +1,107 @@
+{
+  "url": "https://doc.fastadmin.net/doc/2483.html",
+  "title": "框架 env 变量配置 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "FastAdmin 框架提供了对 .env 环境变量配置的支持，并附带一个默认示例文件 .env.sample。在安装后，框架并不会自动启用 env 环境变量，需要手动将 .env.sample 复制为 .env 并进行配置。\n\n在 Linux 环境下，可通过以下命令快速完成复制并生效：\n\n然后使用文本编辑器打开 .env 文件进行配置。\n\n启用了 .env 后，.env 文件中的配置将覆盖框架中其他地方的相应配置，确保了配置的一致性。这种方式为项目提供了更大的灵活性和可维护性。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "框架 env 变量配置",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "使用 env 的好处",
+      "id": "使用 env 的好处-1"
+    },
+    {
+      "level": "h2",
+      "text": "启用 env",
+      "id": "启用 env-2"
+    },
+    {
+      "level": "h2",
+      "text": "默认支持 的 env 键",
+      "id": "默认支持 的 env 键-3"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "cp .env.sample .env",
+      "language": "bash"
+    },
+    {
+      "code": "[app]\n;是否开启Debug调试\ndebug = false\n;是否开启Trace调试\ntrace = false\n\n[database]\nhostname = 数据库连接地址\ndatabase = 数据库名\nusername = 数据库连接用户名\npassword = 数据库连接密码\nhostport = 数据库连接端口\ncharset = 数据库连接编码\nprefix = 数据库表前缀\n;是否开启数据库调试\ndebug = false",
+      "language": "json"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

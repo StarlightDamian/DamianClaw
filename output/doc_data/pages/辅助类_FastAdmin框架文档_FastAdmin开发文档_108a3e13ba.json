@@ -1,0 +1,134 @@
+{
+  "url": "https://doc.fastadmin.net/doc/1264.html",
+  "title": "辅助类 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "FastAdmin中有自带常用的辅助类可以在我们开发中便捷使用，如果你需要扩展自己的类，可以参考ThinkPHP5的文档：https://www.kancloud.cn/manual/thinkphp5/177200\n\nFastAdmin中的辅助类位于站点目录/extend/fast目录中。\n\n表单前台使用示例可以参考：https://ask.fastadmin.net/article/5567.html",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "辅助类",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "常用类",
+      "id": "常用类-1"
+    },
+    {
+      "level": "h3",
+      "text": "日期时间处理类",
+      "id": "日期时间处理类-1"
+    },
+    {
+      "level": "h3",
+      "text": "Http请求处理类",
+      "id": "Http请求处理类-2"
+    },
+    {
+      "level": "h3",
+      "text": "随机字符处理类",
+      "id": "随机字符处理类-3"
+    },
+    {
+      "level": "h3",
+      "text": "中文转拼音处理类",
+      "id": "中文转拼音处理类-4"
+    },
+    {
+      "level": "h3",
+      "text": "表单元素生成类",
+      "id": "表单元素生成类-5"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "//获取两个时区间相差的秒数\n$seconds = \\fast\\Date::offset('America/Chicago', 'GMT');\n\n//计算两个数值之间相差的时间\n$span = \\fast\\Date::span(60, 182, 'minutes,seconds'); // array('minutes' => 2, 'seconds' => 2)\n$span = \\fast\\Date::span(60, 182, 'minutes'); // 2，如果第三个参数只需返回一个数据时，此时直接返回值，不返回数组。\n//第三个参数支持years,months,weeks,days,hours,minutes,seconds\n\n//格式化时间戳为易读的字符串\n$text = \\fast\\Date::human(time()-10); //10 seconds ago\n$text = \\fast\\Date::human(time()+10); //10 seconds after\n$text = \\fast\\Date::human(time()-70); //1 minute ago\n$text = \\fast\\Date::human(time()+70); //1 minute ago\n\n//获取一个基于时间偏移的Unix时间戳，常用于统计功能筛选日期时间的计算\n$timestamp = \\fast\\Date::unixtime('day'); // 返回今天0点0分0秒的时间戳\n$timestamp = \\fast\\Date::unixtime('day', -1); //返回昨天0点0分0秒的时间戳\n$timestamp = \\fast\\Date::unixtime('day', -1, 'end'); //返回昨天23点59分59秒的时间戳\n$timestamp = \\fast\\Date::unixtime('week'); // 返回本周一0点0分0秒的时间戳\n$timestamp = \\fast\\Date::unixtime('week', -1); //返回上周一0点0分0秒的时间戳\n$timestamp = \\fast\\Date::unixtime('week', -1, 'end'); //返回上周日23点59分59秒的时间戳\n//\\fast\\Date::unixtime($type = 'day', $offset = 0, $type = 'begin');\n//$type：默认为day，支持minute,hour,day,week,month,quarter,year\n//$offset：默认为0，正数表示当前$type之后，负数表示当前$type之前\n//$type：默认为begin，时间的开始或结束，可选前(begin,start,first,front)，end",
+      "language": "sass"
+    },
+    {
+      "code": "//发送一个POST请求并获取返回结果\n$result = \\fast\\Http::post(\"http://www.example.com\", ['name'=>'张三', 'age'=>20]);\n//发送一个POST请求并设置Content-Type并获取返回结果\n$result = \\fast\\Http::post(\"http://www.example.com\", ['name'=>'张三', 'age'=>20], [CURLOPT_TIMEOUT => 30, CURLOPT_HTTPHEADER => ['Content-Type: text/plain', 'Authorization: abcdefg']]);\n\n//发送一个GET请求并获取返回结果，此时返回$result=['ret'=>true, 'msg'=>'返回结果'];\n$result = \\fast\\Http::sendRequest(\"http://www.example.com\", ['name'=>'张三', 'age'=>20], [CURLOPT_HTTPHEADER => ['Content-Type: text/plain']]);\n\n//发送一个无需获取返回结果的请求\n\\fast\\Http::sendAsyncRequest(\"http://www.example.com\", ['name'=>'张三', 'age'=>20]);\n\n//发送输出一个临时文件到浏览器端下载，并删除该文件\n\\fast\\Http::sendToBrowser(\"你的临时文件绝对路径\");",
+      "language": "php"
+    },
+    {
+      "code": "//生成一个包含数字和字母的6位随机字符串，默认为6位\n$result = \\fast\\Random::alnum();\n//生成一个包含数字和字母的15位随机字符串\n$result = \\fast\\Random::alnum(15);\n\n//生成一个仅包含字母的15位随机字符串\n$result = \\fast\\Random::alpha(15);\n\n//生成一个仅包含数字的15位随机数字\n$result = \\fast\\Random::numeric(15);\n//生成一个仅包含数字且不包含0的15位随机数字\n$result = \\fast\\Random::nozero(15);\n\n//生成全球唯一标识\n$result = \\fast\\Random::uuid();",
+      "language": "php"
+    },
+    {
+      "code": "//中文转拼音全拼\n$result = \\fast\\Pinyin::get(\"中文\"); //返回zhongwen\n//中文转拼音首字母\n$result = \\fast\\Pinyin::get(\"中文\", true); //返回zw\n//中文转拼音使用-进行连接\n$result = \\fast\\Pinyin::get(\"中文\", false, '-'); //zhong-wen\n//中文转拼音使用-进行连接并首字母大写\n$result = \\fast\\Pinyin::get(\"中文\", false, '-', true); //Zhong-Wen\n//\\fast\\Pinyin::get($chinese, $onlyfirst = false, $delimiter = '', $ucfirst = false);\n//$chinese：中文字符，必选\n//$onlyfirst：是否只返回拼音首字母，默认为false\n//$delimiter：拼音间分隔符，默认为空\n//$ucfirst：是否拼音首字母大小，默认为false",
+      "language": "php"
+    },
+    {
+      "code": "//引入类\nuse fast\\Form;\n\n//生成Token\nForm::token() \n//Label标签\nForm::label(string $name, string $value = null, array $options = []) \n//按类型生成文本框\nForm::input($type, $name, string $value = null, array $options = [])\n//普通文本框 \nForm::text(string $name, string $value = null, array $options = []) \n//密码文本框\nForm::password(string $name, array $options = []) \n//隐藏文本框\nForm::hidden(string $name, string $value = null, array $options = [])\n//Email文本框 \nForm::email(string $name, string $value = null, array $options = []) \n//URL文本框\nForm::url(string $name, string $value = null, array $options = []) \n//文件组件\nForm::file(string $name, array $options = []) \n//多行文本框\nForm::textarea(string $name, string $value = null, array $options = []) \n//富文本编辑器\nForm::editor(string $name, string $value = null, array $options = []) \n//下拉列表组件\nForm::select(string $name, array $list = [], string $selected = null, array $options = []) \n//下拉列表组件(多选)\nForm::selects(string $name, array $list = [], string $selected = null, array $options = []) \n//下拉列表组件(友好)\nForm::selectpicker(string $name, array $list = [], string $selected = null, array $options = []) \n//下拉列表组件(友好)(多选)\nForm::selectpickers(string $name, array $list = [], string $selected = null, array $options = []) \n//动态下拉列表组件\nForm::selectpage(string $name, string $value, string $url, string $field = null, string $primaryKey = null, array $options = []) \n//动态下拉列表组件(多选)\nForm::selectpages(string $name, string $value, string $url, string $field = null, string $primaryKey = null, array $options = []) \n//城市选择组件\nForm::citypicker(string $name, string $value, array $options = []) \n//开关组件\nForm::switcher(string $name, string $value, array $options = []) \n//日期选择组件\nForm::datepicker(string $name, string $value, array $options = []) \n//时间选择组件\nForm::timepicker(string $name, string $value, array $options = []) \n//日期时间选择组件\nForm::datetimepicker(string $name, string $value, array $options = []) \n//日期区间组件\nForm::daterange(string $name, string $value, array $options = []) \n//时间区间组件\nForm::timerange(string $name, string $value, array $options = []) \n//日期时间区间组件\nForm::datetimerange(string $name, string $value, array $options = []) \n//字段列表组件\nForm::fieldlist(string $name, string $value, string $title = null, string $template = null, array $options = []) \n//联动组件\nForm::cxselect(string $url, array $names = [], array $values = [], array $options = []) \n//选择数字区间\nForm::selectRange(string $name, string $begin, string $end, string $selected = null, array $options = []) \n//选择年\nForm::selectYear(string $name, string $begin, string $end, string $selected = null, array $options = []) \n//选择月\nForm::selectMonth(string $name, string $selected = null, array $options = [], string $format = '%m') \n//单个复选框\nForm::checkbox(string $name, string $value = '1', string $checked = null, array $options = []) \n//一组复选框\nForm::checkboxs(string $name, array $list = [], string $checked = null, array $options = []) \n//单个单选框\nForm::radio(string $name, string $value = null, string $checked = null, array $options = []) \n//一组单选框\nForm::radios(string $name, array $list = [], string $checked = null, array $options = []) \n//上传图片组件\nForm::image(string $name = null, string $value, array $inputAttr = [], array $uploadAttr = [], array $chooseAttr = [], array $previewAttr = []) \n//上传图片组件(多图)\nForm::images(string $name = null, string $value, array $inputAttr = [], array $uploadAttr = [], array $chooseAttr = [], array $previewAttr = []) \n//上传文件组件\nForm::upload(string $name = null, string $value, array $inputAttr = [], array $uploadAttr = [], array $chooseAttr = [], array $previewAttr = []) \n//上传文件组件(多文件)\nForm::uploads(string $name = null, string $value, array $inputAttr = [], array $uploadAttr = [], array $chooseAttr = [], array $previewAttr = []) \n//表单button\nForm::button(string $value = null, array $options = [])",
+      "language": "swift"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

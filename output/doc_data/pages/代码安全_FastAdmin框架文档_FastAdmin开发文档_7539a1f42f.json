@@ -1,0 +1,147 @@
+{
+  "url": "https://doc.fastadmin.net/doc/170.html",
+  "title": "代码安全 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "开发安全是我们在开发过程中很容易忽略的一个环节，由于程序的不严谨很容易数据泄漏、数据丢失、服务器被提权，因此我们在开发过程中就要尽量做到开发规范严谨，接下来主要讲解下在开发过程中要注意避免产生BUG的几种情形\n\n这种问题常常出现在读写操作数据库时产生，很多时候我们需要查询数据库的数据做逻辑操作，由于未对请求的参数做过滤或处理，很容易产生数据丢失和数据泄漏的问题。\n\n例如，我们需要根据用户名查询指定用户的信息，我们常用的SQL语句如下：\n\n一般情况下我们username参数传普通参数都不会有问题，但是如果遇到别有用心之人传一些特殊参数，例如传递username的参数为\n\n此时我们接收到的username为' OR '1'='1，生成的SQL语句为\n\n此时将导致筛选所有数据或筛选我们任意想要的数据。\n\n那如何避免这种情况发生呢？我们有以下几种解决方法\n\n在ThinkPHP5中提供了许多数据输入过滤方法，例如\n\nFastAdmin从1.2.0版本开始已经内置了xss_clean函数用于清除过滤请求中可能的危险字段，可以搭配其它过滤方式一同使用，如\n\nXSS跨站点脚本注入常常出现在浏览器客户端输出时由于未对输出的数据进行过滤和转换，导致浏览器响应执行了Javascript代码，这个代码代具有管理员权限的用户做一些隐藏的操作，比如提权、恶意修改删除数据，甚至将用户当前浏览器端的Cookie等数据传到攻击者的服务器，攻击者通过伪造Cookie请求，很容易造成用户信息漏洞和数据丢失的情况。这种问题常出现在会员昵称、会员头像输出、会员评论数据等情况下。\n\n解决防范XSS跨站注入的首先是按照上方的SQL注入做好请求数据过滤，其次是做好数据输出时的编码，我们在视图模板中编写代码时，可以通过添加htmlentities对HTML代码做实体编码，例如\n\n千万不要直接使用以下的代码，以下代码都是非常不安全的\n\nCSRF全称为cross site request forgery，中文意思为：跨站点伪装请求。\n\n跨站点请求的原理就是用户A在站点1发布上传粘贴了一个站点2的URL，用户B不明就里的点击了站点2的URL，而这个URL因为是伪装请求站点1修改密码(其它危险请求)的操作。此时用户A就已经获取了用户B的账户信息。\n\n例如我们常常在编写表单提交的时候都是如下的写法\n\n以上的写法很容易产生CSRF跨站点伪装请求。\n\n在ThinkPHP5可以很方便的使用token的方式来防范这种威胁，比如我们将上面的代码改写为\n\n我们添加了一个{:token()}，由于这个token是我们服务端动态输出的，伪装者的服务器没法获取该值，此时我们再做好服务端验证这个token是否有效即可，常用的方法如下\n\n更多Token表单令牌的使用方法可以参考ThinkPHP5官方文档：https://www.kancloud.cn/manual/thinkphp5/193918",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "代码安全",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "SQL注入",
+      "id": "SQL注入-1"
+    },
+    {
+      "level": "h3",
+      "text": "XSS跨站注入",
+      "id": "XSS跨站注入-2"
+    },
+    {
+      "level": "h3",
+      "text": "CSRF跨站请求",
+      "id": "CSRF跨站请求-3"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// 错误写法\n$username = $this->request->request(\"username\");\n\\think\\Db::query(\"SELECT * FROM fa_user WHERE username='{$username}'\");",
+      "language": "php"
+    },
+    {
+      "code": "http://www.yoursite.com/test/index?username=' OR '1'='1",
+      "language": "yaml"
+    },
+    {
+      "code": "SELECT * FROM fa_user WHERE username='' OR '1'='1'",
+      "language": "sql"
+    },
+    {
+      "code": "// 推荐写法\n$username = $this->request->request(\"username\", \"\");\n$username = htmlspecialchars($username, ENT_QUOTES);\n\\think\\Db::query(\"SELECT * FROM fa_user WHERE username=:username\", ['username'=>$username]);",
+      "language": "sql"
+    },
+    {
+      "code": "// 推荐写法\n$username = $this->request->request(\"username\", \"\");\n$username = htmlspecialchars($username, ENT_QUOTES);\n//方法1\n\\app\\common\\model\\User::getByUsername($username);\n//方法2\n\\app\\common\\model\\User::where('username', $username)->find();",
+      "language": "php"
+    },
+    {
+      "code": "//强制转换为Email格式\n$this->request->post('email','',FILTER_VALIDATE_EMAIL);\n$this->request->post('email','','email');\n//强制转换为数字\n$this->request->post('id/d','0');",
+      "language": "php"
+    },
+    {
+      "code": "$this->request->post('title/s','','trim,strip_tags,htmlspecialchars,xss_clean');",
+      "language": "php"
+    },
+    {
+      "code": "// 推荐写法\n<input type=\"text\" name=\"username\" value=\"{$username|htmlentities}\" />",
+      "language": "html"
+    },
+    {
+      "code": "// 错误写法\n<input type=\"text\" name=\"username\" value=\"{$Think.get.username}\" />\n或\n<input type=\"text\" name=\"username\" value=\"{$_GET['username']}\" />",
+      "language": "html"
+    },
+    {
+      "code": "<form action=\"\">\n<input type=\"password\" name=\"newpassword\" />\n<input type=\"submit\" />\n</form>",
+      "language": "html"
+    },
+    {
+      "code": "<form action=\"\">\n{:token()}\n<input type=\"password\" name=\"newpassword\" />\n<input type=\"submit\" />\n</form>",
+      "language": "html"
+    },
+    {
+      "code": "$token = $this->request->post('__token__');\n\n//验证Token\nif (!$token || !\\think\\Validate::is($token, \"token\", ['__token__' => $token])) {\n        $this->error(\"请勿非法请求\");\n}",
+      "language": "php"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

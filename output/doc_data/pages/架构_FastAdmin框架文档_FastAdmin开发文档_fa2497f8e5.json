@@ -1,0 +1,112 @@
+{
+  "url": "https://doc.fastadmin.net/doc/construct.html",
+  "title": "架构 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "FastAdmin基于MVC的设计模式，将我们的应用分为三层（模型M、视图V、控制器C）。\n\nFastAdmin目录结构遵循ThinkPHP5官方建议的模块设计：\n\n在FastAdmin中默认有四个应用模块：common、admin、index、api，你也可以扩展开发自己的应用模块。\n\n后台模块(admin)是FastAdmin中的核心模块，后台模块又分为系统配置、附件管理、插件管理等多个功能模块，更多的功能模块可以在插件管理中自由的安装和卸载。\n\n后台的前端是基于AdminLTE和Bootstrap进行了大量二次开发，采用RequireJS进行JS模块化管理和加载。\n\n前台模块(index)的结构和后台功能类似，具体请参考后台模块的章节。\n\n公共模块(common)是一个特殊的模块，默认是禁止直接访问的，一般用于放置一些公共的类或其它模块的继承基类等。\n\nApi 模块(api)通常用于对接APP或小程序，用于向APP或小程序提供接口，具体 api 代码编写可以直接参考ThinkPHP5官方的文档，api 文档可以通过命令行生成，详细请参看 一键生成API文档 章节。\n\n功能模块指后台管理中的功能模块，比如我们的系统配置、附件管理、分类管理（分类管理在新版中默认隐藏，可自行在权限管理中打开）。\n\n后台开发的每一个功能模块都是基于MVC的设计模式进行开发 。在FastAdmin中，我们提供了一键生成CRUD的功能，这个一键生成CRUD生成的文件也就是我们标准的MVC文件。\n\n在FastAdmin中每一个功能模块至少对应一个功能模块JS文件，也就是说每一个控制器都对应一个同名的JS文件，其次每一个控制器的方法对应JS文件中同名的方法。\n\n具体控制器详细介绍可参考控制器章节，JS的部分可以参考前端章节。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "架构",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "架构总览",
+      "id": "架构总览-1"
+    },
+    {
+      "level": "h2",
+      "text": "目录结构",
+      "id": "目录结构-2"
+    },
+    {
+      "level": "h2",
+      "text": "应用模块",
+      "id": "应用模块-3"
+    },
+    {
+      "level": "h2",
+      "text": "功能模块",
+      "id": "功能模块-4"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "FastAdmin项目目录\n├── addons                  //插件存放目录\n├── application             //应用目录\n│   ├── admin               //后台管理应用模块\n│   ├── api                 //API应用模块\n│   ├── common              //通用应用模块\n│   ├── extra               //扩展配置目录\n│   ├── index               //前台应用模块\n│   ├── build.php\n│   ├── command.php         //命令行配置\n│   ├── common.php          //通用辅助函数\n│   ├── config.php          //基础配置\n│   ├── database.php        //数据库配置\n│   ├── route.php           //路由配置\n│   ├── tags.php            //行为配置\n├── extend\n│   └── fast                //FastAdmin扩展辅助类目录\n├── public                  //框架入口目录\n│   ├── assets\n│   │   ├── addons         //插件前端资源目录\n│   │   ├── build           //打包JS、CSS的资源目录\n│   │   ├── css             //CSS样式目录\n│   │   ├── fonts           //字体目录\n│   │   ├── img             //图片资源目录\n│   │   ├── js\n│   │   │   ├── backend     //后台功能模块JS文件存放目录\n│   │   │   └── frontend    //前台功能模块JS文件存放目录\n│   │   ├── libs            //Bower资源包位置（只读，通过 bower 更新）\n│   │   └── less            //Less资源目录\n│   └── uploads             //上传文件目录\n│   ├── index.php           //应用入口主文件\n│   ├── install.php         //FastAdmin安装引导（安装完成后会自动删除）\n│   ├── admin.php           //后台入口文件(自动安装后会被修改为随机文件名）\n│   ├── robots.txt\n│   └── router.php\n├── runtime                 //缓存目录\n├── thinkphp                //ThinkPHP框架核心目录（只读，通过 composer 更新）\n├── vendor                  //Compposer资源包位置（只读，通过 composer 更新）\n├── .bowerrc                //Bower目录配置文件\n├── .env.sample             //环境配置模板（可复制一份为 .env 生效）\n├── LICENSE\n├── README.md               //项目介绍\n├── bower.json              //Bower前端包配置\n├── build.php\n├── composer.json           //Composer包配置\n└── think                   //命令行控制台入口（使用 php think 命令进入）",
+      "language": "unknown"
+    },
+    {
+      "code": "├── application\n│   └── admin\n│       ├── controller\n│       │   └── Test.php                //控制器类\n│       ├── lang\n│       │   └─ zh-cn\n│       │       └── test.php            //功能语言包，按需加载\n│       ├── model\n│       │   └── Test.php                //模型类\n│       ├── validate\n│       │   └── Test.php                //验证器类\n│       └── view\n│           └── test\n│               ├── index.html           //列表视图\n│               ├── add.html              //添加视图\n│               ├── edit.html              //编辑视图\n│               └── recyclebin.html     //回收站视图\n└── public\n    └── assets\n        └── js\n            └── backend\n                └── test.js             //功能模块JS文件",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

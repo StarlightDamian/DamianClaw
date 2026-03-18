@@ -1,0 +1,113 @@
+{
+  "url": "https://doc.fastadmin.net/doc/crud.html",
+  "title": "一键生成CRUD - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "在FastAdmin中可以快速的一键生成CRUD，自动生成后台的控制器、模型、视图、JS、语言包、菜单、回收站等。\n\n在数据库中默认有一个fa_test数据表可供参考，也可新建一个数据表，编辑好表字段结构，并且一定写上字段注释和表注释，相关数据表字段的设计要求可以参考数据库章节。FastAdmin在生成CRUD时会根据字段属性、字段注释、表注释自动生成语言包、组件和排版。\n\n请确保你设计的表有且只有一个主键，不支持复合主键。请确保php所在的目录已经加入到系统环境变量，否则会提示找不到该命令。\n\n下面以 fa_test 数据表为例，打开命令行控制台进入到你的站点根目录，也就是think文件所在的目录，进行执行命令。\n\n更多CRUD一键生成可使用的参数请使用php think crud --help查看。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "一键生成CRUD",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "准备工作",
+      "id": "准备工作-1"
+    },
+    {
+      "level": "h3",
+      "text": "常用命令",
+      "id": "常用命令-2"
+    },
+    {
+      "level": "h3",
+      "text": "参数介绍",
+      "id": "参数介绍-3"
+    },
+    {
+      "level": "h3",
+      "text": "常见问题",
+      "id": "常见问题-4"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "//生成fa_test表的CRUD\nphp think crud -t test\n//生成fa_test表的CRUD且一键生成菜单\nphp think crud -t test -u 1\n//删除fa_test表生成的CRUD\nphp think crud -t test -d 1\n//生成fa_test表的CRUD且控制器生成在二级目录下\nphp think crud -t test -c mydir/test\n//删除fa_test表生成的二级目录的CRUD\nphp think crud -t test -c mydir/test -d 1\n//生成fa_test_log表的CRUD且生成对应的控制器为testlog\nphp think crud -t test_log -c testlog\n//生成fa_test表的CRUD且对应的模型名为testmodel\nphp think crud -t test -m testmodel\n//生成fa_test表的CRUD且生成关联模型category，外链为category_id，关联表主键为id\nphp think crud -t test -r category -k category_id -p id\n//生成fa_test表的CRUD且所有以list或data结尾的字段都生成复选框\nphp think crud -t test --setcheckboxsuffix=list --setcheckboxsuffix=data\n//生成fa_test表的CRUD且所有以image和img结尾的字段都生成图片上传组件\nphp think crud -t test --imagefield=image --imagefield=img\n//关联多个表,参数传递时请按顺序依次传递，支持以下几个参数relation/relationmodel/relationforeignkey/relationprimarykey/relationfields/relationmode\nphp think crud -t test --relation=category --relation=admin --relationforeignkey=category_id --relationforeignkey=admin_id\n//生成v_phealth_db2数据库下的fa_test表的CRUD\nphp think crud -t test --db=v_phealth_db2",
+      "language": "php"
+    },
+    {
+      "code": "-t, --table=TABLE                              表名，带不带表前缀均可\n-c, --controller[=CONTROLLER]                  生成的控制器名,可选,默认根据表名进行自动解析\n-m, --model[=MODEL]                            生成的模型名,可选,默认根据表名进行自动解析\n-i, --fields[=FIELDS]                          生成的数据列表中可见的字段，默认是全部\n-f, --force[=FORCE]                            是否覆盖模式,如果目标位置已经有对应的控制器或模型会提示\n-l, --local[=LOCAL]                            是否本地模型,默认1,置为0时,模型将生成在common模块下\n-r, --relation[=RELATION]                      关联模型表名，带不带表前缀均可\n-e, --relationmodel[=RELATIONMODEL]            生成的关联模型名,可选,默认根据表名进行自动解析\n-k, --relationforeignkey[=RELATIONFOREIGNKEY]  表外键,可选,默认会识别为使用 模型_id 名称\n-p, --relationprimarykey[=RELATIONPRIMARYKEY]  关联模型表主键,可选,默认会自动识别\n-s, --relationfields[=RELATIONFIELDS]          关联模型表显示的字段，默认是全部\n-o, --relationmode[=RELATIONMODE]              关联模型,hasone/belongsto/hasmany [default: \"belongsto\"]（v1.3+ 增加了 hasmany）\n-d, --delete[=DELETE]                          删除模式,将删除之前使用CRUD命令生成的相关文件\n-u, --menu[=MENU]                              菜单模式,生成CRUD后将继续一键生成菜单\n--db[=key]                                     多数据库支持(参数为tp5中配置的数据库key 在application\\config.php添加数据库配置信息)\n--setcheckboxsuffix[=SETCHECKBOXSUFFIX]    自动生成复选框的字段后缀\n--enumradiosuffix[=ENUMRADIOSUFFIX]        自动生成单选框的字段后缀\n--imagefield[=IMAGEFIELD]                  自动生成图片上传组件的字段后缀\n--filefield[=FILEFIELD]                    自动生成文件上传组件的字段后缀\n--intdatesuffix[=INTDATESUFFIX]            自动生成日期组件的字段后缀\n--switchsuffix[=SWITCHSUFFIX]              自动生成可选组件的字段后缀\n--citysuffix[=CITYSUFFIX]                  自动生成城市选择组件的字段后缀\n--selectpagesuffix[=SELECTPAGESUFFIX]      自动生成Selectpage组件的字段后缀\n--ignorefields[=IGNOREFIELDS]                 排除的字段\n--editorclass[=EDITORCLASS]                自动生成富文本组件的字段后缀\n--headingfilterfield[=HEADINGFILTERFIELD]  自动生成筛选过滤选项卡的字段，默认是status字段\n--sortfield[=SORTFIELD]                    排序字段",
+      "language": "sass"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html",
+    "https://doc.fastadmin.net/docs/database.html"
+  ]
+}

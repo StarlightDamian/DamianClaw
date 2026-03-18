@@ -1,0 +1,143 @@
+{
+  "url": "https://doc.fastadmin.net/doc/install.html",
+  "title": "安装 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "为了确保 FastAdmin 框架能够正常运行，请确保你的服务器满足以下环境要求：\n\n推荐使用 Google Chrome v100+、Firefox v100+、Microsoft EDGE v100+ 或 Apple Safari v13+。\n\nFastAdmin 开源框架的安装非常简单，只需简单三步即可安装完成。（推荐使用云服务器）\n\n下面以 Linux 宝塔面板 （Linux + Nginx + PHP7.4 + MySQL5.7）为例。\n\n注意事项：如果你重复执行install.php，数据库中的 FastAdmin 框架基础表和用户表将被重置，请提前做好全站备份。\n\n我们还提供了更加详细的 FastAdmin 安装教程，欢迎观看。\n\n为了节省你的时间，FastAdmin 开源框架推荐的 php 环境如下。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "安装",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "环境要求",
+      "id": "环境要求-1"
+    },
+    {
+      "level": "h3",
+      "text": "服务器环境要求",
+      "id": "服务器环境要求-1"
+    },
+    {
+      "level": "h3",
+      "text": "客户端浏览器推荐",
+      "id": "客户端浏览器推荐-2"
+    },
+    {
+      "level": "h2",
+      "text": "安装教程",
+      "id": "安装教程-2"
+    },
+    {
+      "level": "h3",
+      "text": "第一步：新建站点",
+      "id": "第一步：新建站点-3"
+    },
+    {
+      "level": "h3",
+      "text": "第二步：上传框架",
+      "id": "第二步：上传框架-4"
+    },
+    {
+      "level": "h3",
+      "text": "第三步：配置并安装",
+      "id": "第三步：配置并安装-5"
+    },
+    {
+      "level": "h2",
+      "text": "视频教程",
+      "id": "视频教程-3"
+    },
+    {
+      "level": "h2",
+      "text": "开发环境可选项",
+      "id": "开发环境可选项-4"
+    },
+    {
+      "level": "h2",
+      "text": "依赖的 php 环境",
+      "id": "依赖的 php 环境-5"
+    },
+    {
+      "level": "h2",
+      "text": "常见问题",
+      "id": "常见问题-6"
+    },
+    {
+      "level": "h2",
+      "text": "文档日志",
+      "id": "文档日志-7"
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "url": "https://doc.fastadmin.net/doc/169.html",
+  "title": "公共模块 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "Token验证主要用于会员登录状态信息的维护和验证，通常情况下不需要我们调用此类的方法，在一些特殊情况下我们可以手动调用。\n\n获取Token的详情、关联的会员ID、过期时间、有效期等信息。\n\n新增会员Token并更新，且有效期为3600秒\n\n通过Token和会员ID来判断Token是否可以使用。\n\nFastAdmin中的邮件发送采用phpmailer进行邮件发送，在使用邮件发送功能前请先在后台常规管理->系统配置中配置好邮件的相关信息。\n\n首先我们需要采用单例或实例化一个Email对象\n\n其次我们可以设置邮件主题正文、接收者、标题等信息，比如\n\n如果我们邮件发送失败，想获取错误的详情，可使用。\n\n在我们开发过程中经常会用到短信发送和短信推广的功能，FastAdmin提供了一个简单实用的短信接口供开发者调用。\n\n在使用短信发送之前，务必在后台安装好我们短信服务商的插件，如果我们要使用的服务商未提供有FastAdmin的插件，我们则需要自己开发一个，或注册一个sms_send和sms_check的事件用于我们的发送和检测操作。\n\n首先常用的是发送短信，比如我们发送一个注册验证码。\n\n发送以后我们有时需要检测验证码是否正确，则可以使用。\n\n当然有些时候我们还需要发送营销短信或通知，则可以使用。\n\n如果我们需要清空指定手机号的验证码，则可以使用。\n\n在FastAdmin中我们有提供几个常用的辅助函数。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "公共模块",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Token验证",
+      "id": "Token验证-1"
+    },
+    {
+      "level": "h3",
+      "text": "功能介绍",
+      "id": "功能介绍-1"
+    },
+    {
+      "level": "h3",
+      "text": "使用示例",
+      "id": "使用示例-2"
+    },
+    {
+      "level": "h5",
+      "text": "获取Token信息",
+      "id": "获取Token信息-1"
+    },
+    {
+      "level": "h5",
+      "text": "设置会员的Token信息",
+      "id": "设置会员的Token信息-2"
+    },
+    {
+      "level": "h5",
+      "text": "判断会员Token是否可用",
+      "id": "判断会员Token是否可用-3"
+    },
+    {
+      "level": "h5",
+      "text": "删除单个会员Token",
+      "id": "删除单个会员Token-4"
+    },
+    {
+      "level": "h5",
+      "text": "删除指定会员的所有Token",
+      "id": "删除指定会员的所有Token-5"
+    },
+    {
+      "level": "h2",
+      "text": "邮件发送",
+      "id": "邮件发送-2"
+    },
+    {
+      "level": "h3",
+      "text": "功能介绍",
+      "id": "功能介绍-3"
+    },
+    {
+      "level": "h3",
+      "text": "使用示例",
+      "id": "使用示例-4"
+    },
+    {
+      "level": "h2",
+      "text": "短信发送",
+      "id": "短信发送-3"
+    },
+    {
+      "level": "h3",
+      "text": "功能介绍",
+      "id": "功能介绍-5"
+    },
+    {
+      "level": "h3",
+      "text": "使用示例",
+      "id": "使用示例-6"
+    },
+    {
+      "level": "h2",
+      "text": "辅助函数",
+      "id": "辅助函数-4"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "\\app\\common\\library\\Token::get('c2259a37-5fee-4c4b-93b0-1d7313e1d1ac');",
+      "language": "php"
+    },
+    {
+      "code": "\\app\\common\\library\\Token::set('c2259a37-5fee-4c4b-93b0-1d7313e1d1ac', 1, 3600);",
+      "language": "php"
+    },
+    {
+      "code": "\\app\\common\\library\\Token::check('c2259a37-5fee-4c4b-93b0-1d7313e1d1ac', 1);",
+      "language": "julia"
+    },
+    {
+      "code": "\\app\\common\\library\\Token::delete('c2259a37-5fee-4c4b-93b0-1d7313e1d1ac');",
+      "language": "php"
+    },
+    {
+      "code": "\\app\\common\\library\\Token::clear(1);",
+      "language": "php"
+    },
+    {
+      "code": "$email = new \\app\\common\\library\\Email;",
+      "language": "php"
+    },
+    {
+      "code": "$email->subject('这里是邮件标题')->to('youremail@163.com')->message('这里是邮件正文')->send();",
+      "language": "php"
+    },
+    {
+      "code": "$email->getError();",
+      "language": "php"
+    },
+    {
+      "code": "\\app\\common\\library\\Sms::send('13888888888', '1234', 'register');",
+      "language": "php"
+    },
+    {
+      "code": "\\app\\common\\library\\Sms::check('1388888888', '1234', 'register');",
+      "language": "php"
+    },
+    {
+      "code": "\\app\\common\\library\\Sms::notice('1388888888', '消息内容', 'SMS_10001');",
+      "language": "php"
+    },
+    {
+      "code": "\\app\\common\\library\\Sms::flush('13888888888', 'register');",
+      "language": "php"
+    },
+    {
+      "code": "/**\n * 获取语言变量值\n * @param string    $name 语言变量名\n * @param array     $vars 动态变量值\n * @param string    $lang 语言\n * @return mixed\n */\nfunction __($name, $vars = [], $lang = '')\n{\n}\n\n/**\n * 将字节转换为可读文本\n * @param int $size 大小\n * @param string $delimiter 分隔符\n * @return string\n */\nfunction format_bytes($size, $delimiter = '')\n{\n}\n\n/**\n * 将时间戳转换为日期时间\n * @param int $time 时间戳\n * @param string $format 日期时间格式\n * @return string\n */\nfunction datetime($time, $format = 'Y-m-d H:i:s')\n{\n}\n\n/**\n * 获取语义化时间\n * @param int $time 时间\n * @param int $local 本地时间\n * @return string\n */\nfunction human_date($time, $local = null)\n{\n}\n\n/**\n * 获取上传资源的CDN的地址\n * @param string $url 资源相对地址\n * @return string\n */\nfunction cdnurl($url)\n{\n}\n\n/**\n * 判断文件或文件夹是否可写\n * @param   string $file 文件或目录\n * @return  bool\n */\nfunction is_really_writable($file)\n{\n}\n/**\n * 删除文件夹\n * @param string $dirname 目录\n * @param bool $withself 是否删除自身\n * @return boolean\n */\nfunction rmdirs($dirname, $withself = true)\n{\n}\n\n/**\n * 复制文件夹\n * @param string $source 源文件夹\n * @param string $dest 目标文件夹\n */\nfunction copydirs($source, $dest)\n{\n}\n\nfunction mb_ucfirst($string)\n{\n}\n\n/**\n * 附加关联字段数据\n * @param array $items 数据列表\n * @param mixed $fields 渲染的来源字段\n * @return array\n */\nfunction addtion($items, $fields)\n{\n}\n\n/**\n * 返回打印数组结构\n * @param string $var   数组\n * @param string $indent 缩进字符\n * @return string\n */\nfunction var_export_short($var, $indent = \"\")\n{\n}",
+      "language": "php"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

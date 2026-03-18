@@ -1,0 +1,129 @@
+{
+  "url": "https://doc.fastadmin.net/doc/185.html",
+  "title": "开关组件 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "开关组件常用于状态值的变更或只有两个值的切换。\n\n使用开关组件只需要给我们的操作按钮添加data-toggle=\"switcher\"即可，如下：\n\n如果你的开关的值不是1和0，则可以通过data-yes和data-no属性来指定开关的值，如下：\n\n从1.2.0版本开始，开关组件支持切换前提示，请尝试给a标签添加一个data-confirm属性即可，如下：\n\n如果你需要监听开关切换后的事件，可以在JS中给隐藏的input文本框添加一个change事件，如下：\n\n如果需要禁用开关组件，只需要给a添加一个disabled的class即可，如下：",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "开关组件",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "常用示例",
+      "id": "常用示例-1"
+    },
+    {
+      "level": "h3",
+      "text": "自定义值",
+      "id": "自定义值-2"
+    },
+    {
+      "level": "h3",
+      "text": "开关提示",
+      "id": "开关提示-3"
+    },
+    {
+      "level": "h3",
+      "text": "开关事件",
+      "id": "开关事件-4"
+    },
+    {
+      "level": "h3",
+      "text": "开关禁用",
+      "id": "开关禁用-5"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<!-- 根据变量值判断 -->\n<input  id=\"c-switch\" name=\"row[switch]\" type=\"hidden\" value=\"{$row.switch}\">\n<a href=\"javascript:;\" data-toggle=\"switcher\" class=\"btn-switcher\" data-input-id=\"c-switch\" data-yes=\"1\" data-no=\"0\" >\n<i class=\"fa fa-toggle-on text-success {eq name=\"$row.switch\" value=\"0\"}fa-flip-horizontal text-gray{/eq} fa-2x\"></i>\n</a>\n\n<!-- 默认开 -->\n<input  id=\"c-switch\" name=\"row[switch]\" type=\"hidden\" value=\"1\">\n<a href=\"javascript:;\" data-toggle=\"switcher\" class=\"btn-switcher\" data-input-id=\"c-switch\" data-yes=\"1\" data-no=\"0\" >\n<i class=\"fa fa-toggle-on text-success fa-2x\"></i>\n</a>\n\n<!-- 默认关 -->\n<input  id=\"c-switch\" name=\"row[switch]\" type=\"hidden\" value=\"0\">\n<a href=\"javascript:;\" data-toggle=\"switcher\" class=\"btn-switcher\" data-input-id=\"c-switch\" data-yes=\"1\" data-no=\"0\" >\n<i class=\"fa fa-toggle-on text-success fa-flip-horizontal text-gray fa-2x\"></i>\n</a>",
+      "language": "html"
+    },
+    {
+      "code": "<input  id=\"c-switch\" name=\"row[switch]\" type=\"hidden\" value=\"open\">\n<a href=\"javascript:;\" data-toggle=\"switcher\" class=\"btn-switcher\" data-input-id=\"c-switch\" data-yes=\"open\" data-no=\"closed\" >\n<i class=\"fa fa-toggle-on text-success {eq name=\"$row.switch\" value=\"closed\"}fa-flip-horizontal text-gray{/eq} fa-2x\"></i>\n</a>",
+      "language": "html"
+    },
+    {
+      "code": "<input  id=\"c-switch\" name=\"row[switch]\" type=\"hidden\" value=\"0\">\n<a href=\"javascript:;\" data-toggle=\"switcher\" class=\"btn-switcher\" data-confirm=\"确认切换开关？\" data-input-id=\"c-switch\" data-yes=\"1\" data-no=\"0\" >\n<i class=\"fa fa-toggle-on text-success {eq name=\"$row.switch\" value=\"0\"}fa-flip-horizontal text-gray{/eq} fa-2x\"></i>\n</a>",
+      "language": "html"
+    },
+    {
+      "code": "$(document).on(\"change\", \"#c-switch\", function(){\n    //开关切换后的回调事件\n});",
+      "language": "r"
+    },
+    {
+      "code": "<input  id=\"c-switch\" name=\"row[switch]\" type=\"hidden\" value=\"0\">\n<a href=\"javascript:;\" data-toggle=\"switcher\" class=\"btn-switcher disabled\" data-input-id=\"c-switch\" data-yes=\"1\" data-no=\"0\" >\n<i class=\"fa fa-toggle-on text-success {eq name=\"$row.switch\" value=\"0\"}fa-flip-horizontal text-gray{/eq} fa-2x\"></i>\n</a>",
+      "language": "html"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

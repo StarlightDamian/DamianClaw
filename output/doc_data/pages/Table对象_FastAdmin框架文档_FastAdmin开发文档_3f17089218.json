@@ -1,0 +1,143 @@
+{
+  "url": "https://doc.fastadmin.net/doc/197.html",
+  "title": "Table对象 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "我们引入表格依赖table后，就可以通过Table来进行相关表格的初始化和绑定相关事件。返回的Table对象包括以下几个对象：\n\n其中Table.list存储的是表格实例化后的对象。比如我们实例化的表格有个id=\"mytable\"的属性，则我们可以通过\n\n来获取此表格的Bootstrap-table的对象。\n\nTable.defaults是指Bootstrap-table表格参数默认值。修改单一的值，我们可以直接通过\n\nTable.columnDefaults是指Bootstrap-table表格列参数默认值修改单一的值，我们可以直接通过\n\nTable.config是指表格使用到的按钮和工具栏的DOM选择类，一般情况下不建议修改。\n\nTable.button是指表格默认编辑、删除、挺拽按钮的配置信息，一般情况下不建议修改。\n\nTable.api封装了表格常用的方法、单元格事件及渲染方法。在表格中会经常使用到。\n\nTable.api.formatter封装了许多FastAdmin表格列表中常用的单元格数据渲染的方法，具体请参考格式化文章章节。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Table对象",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Table.list",
+      "id": "Table.list-1"
+    },
+    {
+      "level": "h3",
+      "text": "Table.defaults",
+      "id": "Table.defaults-2"
+    },
+    {
+      "level": "h3",
+      "text": "Table.columnDefaults",
+      "id": "Table.columnDefaults-3"
+    },
+    {
+      "level": "h3",
+      "text": "Table.config",
+      "id": "Table.config-4"
+    },
+    {
+      "level": "h3",
+      "text": "Table.button",
+      "id": "Table.button-5"
+    },
+    {
+      "level": "h3",
+      "text": "Table.api",
+      "id": "Table.api-6"
+    },
+    {
+      "level": "h3",
+      "text": "Table.api.formatter",
+      "id": "Table.api.formatter-7"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{\n    list:[], //实例化的表格对象列表\n    defaults:{}, //默认表格参数\n    columnDefaults:{}, //默认列参数\n    config:{}, //相关按钮的DOM选择类\n    button:{}, //默认编辑、删除、排序按钮配置\n    api:{} //封装的API方法\n}",
+      "language": "json"
+    },
+    {
+      "code": "Table.list['mytable']",
+      "language": "unknown"
+    },
+    {
+      "code": "Table.defaults.showExport = false;",
+      "language": "unknown"
+    },
+    {
+      "code": "Table.columnDefaults.align = 'left';",
+      "language": "unknown"
+    },
+    {
+      "code": "Table.api.init(defaults, columnDefaults, locales) //此方法用于初始化表格默认配置、表格列配置、写入语言包等操作\nTable.api.bindevent(table) //此方法用于为表格中的元素绑定相关事件\nTable.api.multi(action, ids, table, element) //此方法常用于批量操作请求，内部使用\nTable.api.events.operate //操作栏单元格方法\nTable.api.events.image //图片栏单元格方法\nTable.api.formatter //格式化方法，后面单独介绍\nTable.api.buttonlink(column, buttons, value, row, index, type) //按钮链接生成，内部使用\nTable.api.replaceurl(url, row, table) //替换URL中的数据\nTable.api.selectedids(table) //获取选中的条目ID集合\nTable.api.toggleattr(table) //切换复选框状态\nTable.api.getrowdata(table, index) //根据行索引获取行数据\nTable.api.getrowbyindex(table, index) //根据行索引获取行数据\nTable.api.getrowbyid(table, id) //根据主键ID获取行数据",
+      "language": "unknown"
+    },
+    {
+      "code": "Table.api.formatter.icon //渲染成图标按钮\nTable.api.formatter.image //渲染成单张图片\nTable.api.formatter.images //渲染成多张图片\nTable.api.formatter.content //内容自动截取\nTable.api.formatter.status //渲染成状态\nTable.api.formatter.normal //渲染成label\nTable.api.formatter.toggle //渲染成开关\nTable.api.formatter.url //渲染成文本框链接\nTable.api.formatter.search //渲染成搜索链接\nTable.api.formatter.addtabs //渲染成打开新选项卡链接\nTable.api.formatter.dialog //渲染成弹窗链接\nTable.api.formatter.flag //渲染成标志\nTable.api.formatter.label //渲染成标志\nTable.api.formatter.datetime //渲染成日期时间\nTable.api.formatter.operate //渲染成操作栏按钮\nTable.api.formatter.buttons //渲染成按钮组",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

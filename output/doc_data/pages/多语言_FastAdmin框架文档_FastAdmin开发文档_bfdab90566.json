@@ -1,0 +1,143 @@
+{
+  "url": "https://doc.fastadmin.net/doc/language.html",
+  "title": "多语言 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "在FastAdmin中可以在任何位置(控制器、视图、JS)使用__('语言标识');调用语言包，如果语言标识不存在，则直接输出该语言标识。\n\nFastAdmin中的__函数和ThinkPHP中的lang函数在传参上有些许区别\n\n而如果采用ThinkPHP中的lang中的写法则是\n\n可以看到ThinkPHP中的第二个参数必须传入数组，而FastAdmin中的__则没有这个要求，其实在多个参数时FastAdmin会忽略掉第三个参数$lang比如\n\n因此如果要使第三个参数$lang生效，则只能将第二个参数传为数组或采用ThinkPHP中的lang函数\n\n如果需要在HTML视图文件中使用多语言，则需要使用{:__('Home')}的方式调用，而在PHP和JS中均可以使用__('Home')的方式发起调用。\n\n如果我们调用的多语言不存在，则会原样输出字符。例如我们调用__('Undefined')，则会原样输出Undefined字符。\n\n在FastAdmin当中，框架会自动按照当前请求的控制器进行加载对应的语言包。例如当前我们是中文环境，如果我们请求的是\n\n可以看到FastAdmin会默认加载zh-cn.php这个全局语言包。\n\n如果我们需要跨模块引入其它模块的语言包，则可以在 控制器中使用loadlang方法来引入，如\n\n如果需要在JS中跨模块引入语言包，则需要修改Ajax.php中的lang这个方法。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "多语言",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "使用方法",
+      "id": "使用方法-1"
+    },
+    {
+      "level": "h2",
+      "text": "加载方式",
+      "id": "加载方式-2"
+    },
+    {
+      "level": "h2",
+      "text": "常见问题",
+      "id": "常见问题-3"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "__('My name is %s', \"FastAdmin\");",
+      "language": "php"
+    },
+    {
+      "code": "My name is FastAdmin",
+      "language": "unknown"
+    },
+    {
+      "code": "lang('My name is %s', [\"FastAdmin\"]);",
+      "language": "php"
+    },
+    {
+      "code": "__('This is %s,base on %s', 'FastAdmin', 'ThinkPHP5');",
+      "language": "php"
+    },
+    {
+      "code": "This is FastAdmin,base on ThinkPHP5",
+      "language": "unknown"
+    },
+    {
+      "code": "lang('This is %s,base on %s', ['FastAdmin', 'ThinkPHP5']);",
+      "language": "php"
+    },
+    {
+      "code": "https://demo.fastadmin.net/admin/dashboard/index",
+      "language": "yaml"
+    },
+    {
+      "code": "application/admin/lang/zh-cn.php\napplication/admin/lang/zh-cn/Dashboard.php",
+      "language": "unknown"
+    },
+    {
+      "code": "https://demo.fastadmin.net/admin/general/config/index",
+      "language": "yaml"
+    },
+    {
+      "code": "application/admin/lang/zh-cn.php\napplication/admin/lang/zh-cn/general/Config.php",
+      "language": "unknown"
+    },
+    {
+      "code": "$this->loadlang('模块名');",
+      "language": "php"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

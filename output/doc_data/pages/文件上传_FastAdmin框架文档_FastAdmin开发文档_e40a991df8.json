@@ -1,0 +1,169 @@
+{
+  "url": "https://doc.fastadmin.net/doc/177.html",
+  "title": "文件上传 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "FastAdmin开发框架支持将文件、图片、视频、压缩包等文件快速的上传至本地服务器或云存储，同时支持云存储直传模式和服务器进行中转模式。你可以直接在后台插件管理安装第三方云存储的插件后使用，目前支持以下云存储平台：\n\n从FastAdmin 1.2.0版本开始，所有云存储均已适配分片上传功能FastAdmin只支持启用一个云存储插件，请勿同时启用多个云存储插件\n\nFastAdmin开发框架的上传功能非常强大，我们只需要简单的配置即可支持单图或多图上传。\n\n如果我们未启用云存储插件，此时上传读取的是application/extra/upload.php这个配置文件。\n\n如果安装了云存储插件并启用，则相关配置请在后台插件管理，对应的云存储配置中进行设置。如果安装了云存储插件并启用，则所有的文件都将上传至云存储，如果需要上传到本地服务器，请给按钮添加data-url=\"ajax/upload\"属性不支持同时启用多个云存储插件，只允许启用一个云存储插件mimetype如配置允许 pdf,ppt,docx,svg 等可能含有脚本的文件时，请先从服务器配置此类文件直接下载而不是预览\n\n文件保存文件名savekey支持替换的变量如下：\n\n如在savekey中使用了{filemd5}，上传超大文件时可能导致前端MD5计算耗时过长\n\n我们可以看到这里配置了一个文本框、一个上传按钮、一个选择按钮和一个预览的DIV\n\n如果我们想直接通过JS上传一个文件到我们的服务器(支持云存储插件)，我们可以在JS中使用\n\n来上传文件，注意仅适用于在FastAdmin框架前端标准模块对应的JS中调用。\n\n从FastAdmin 1.2.0版本开始已经支持分片上传，如果需要启用分片上传，必须客户端和服务端同时开启。首先找到application/extra/upload.php，修改其中的chunking值为true。其次给按钮添加data-chunking=true属性即可，如果提示文件过大，可以再添加data-maxsize=\"1024M\"来控制允许上传的文件大小。\n\n1、因为FastAdmin 框架不支持断点续传，如果采用分片上传大文件时，如果受网络波动影响，有其中一片上传错误，会导致整个文件上传失败，建议使用第三方工具进行上传超大文件。2、分片上传不支持富文本编辑器内的上传。\n\n从FastAdmin 1.2.1版本开始已经支持上传成功后归类功能，我们可以通过给上传按钮添加data-params='{\"category\":\"category2\"}'来实现，这个即是上传归类到category2，这个category2可以在常规管理->系统配置->字典配置中添加修改\n\nFastAdmin中的上传组件，默认只支持预览图片预览，当判断到不是图片时会使用对应的文件后缀进行预览，如果需要使用自定义上传预览，可以参考以下方法进行实现。首先请参考上方的上传示例代码，我们给预览区域<ul class=\"row list-inline faupload-preview\" id=\"p-avatar\"></ul>添加一个data-template的属性\n\n然后在页面底部添加一个avatartpl的自定义模板，如：\n\n这其中的data-template的值对应我们自定义模板ID的值，自定义模板中支持的变量如下：\n\n当我们在大文件上传时(文件大小超过2M)，除了可以采用上方的分片上传以外，还可以通过修改服务器的配置来实现大文件上传。大文件上传时通常涉及到插件配置/本地配置/PHP配置/Nginx配置四处地方需要修改。1、如果有安装云存储插件，首先请在后台插件管理修改云存储插件->配置中的最大可上传配置值。2、然后修改 application/extra/upload.php 里的 maxsize的值。3、接着修改PHP上传限制，修改你服务器运行环境的 php.ini 里的 max_execution_time=300、upload_max_filesize=100M、post_max_size=100M三个配置值。4、如果使用Nginx 还需要修改Nginx的配置client_max_body_size 100M;5、修改配置后务必重启Web服务和清浏览器缓存。6、如果有使用CDN分布式部署或负载均衡，还需检查你的云服务提供商是否有上传大小限制。\n\n如果我们希望在不同页面使用不同的上传配置，可以参考以下方法。在当前控制器添加_initialize方法，如已有则按需要修改添加\\think\\Config::set('upload.mimetype', 'zip,rar');\n\n1、动态配置仅适用于本地上传，如果有安装插件市场云存储插件则不适用2、upload.mimetype的配置仅用于前端限制文件的选择，服务端验证时仍然会以application/extra.php中限制的文件后缀为准。3、如果前端上传按钮使用了data-mimetype，则动态配置无效\n\n1、动态配置仅适用于本地上传，如果有安装插件市场云存储插件则不适用2、upload.mimetype的配置仅用于前端限制文件的选择，服务端验证时仍然会以application/extra.php中限制的文件后缀为准。3、如果前端上传按钮使用了data-mimetype，则动态配置无效\n\n请参考文档：https://doc.fastadmin.net/doc/frontend.html#toc-6\n\n1、如果是动态生成的上传按钮，需要使用Form.events.faupload(表单);绑定事件2、即使设置了分片上传，也只有当上传的文件超过设置的单一分片文件大小时才会启用分片上传。3、从FastAdmin 1.2.0开始，前端上传默认超时为600000毫秒，也就是10分钟，如上传超大文件，请给上传按钮添加data-upload-options='{\"timeout\":1800000}'设定为30分钟超时。4、如果安装了云存储插件，上传没有生效，请尝试清空浏览器缓存。5、如果遇到上传大文件失败，请参考https://ask.fastadmin.net/question/26919.html 进行修改服务器的限制。6、如果安装了云存储插件并启用，则所有的文件都将上传至云存储，如果仍需要上传文件到本地服务器，请给按钮添加data-url=\"ajax/upload\"属性7、由于FastAdmin中多图(多文件)使用,作为分隔符处理，因此不支持单个文件(图片)URL中使用,，这种情况常见于云存储图片自定义处理，建议云存储图片处理时采用自定义样式来避免使用到,的情况。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "文件上传",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "上传配置",
+      "id": "上传配置-1"
+    },
+    {
+      "level": "h3",
+      "text": "文件名规则",
+      "id": "文件名规则-1"
+    },
+    {
+      "level": "h3",
+      "text": "上传示例",
+      "id": "上传示例-2"
+    },
+    {
+      "level": "h3",
+      "text": "按钮属性",
+      "id": "按钮属性-3"
+    },
+    {
+      "level": "h3",
+      "text": "上传按钮事件回调",
+      "id": "上传按钮事件回调-4"
+    },
+    {
+      "level": "h2",
+      "text": "直接上传",
+      "id": "直接上传-2"
+    },
+    {
+      "level": "h2",
+      "text": "分片上传",
+      "id": "分片上传-3"
+    },
+    {
+      "level": "h2",
+      "text": "上传成功后归类",
+      "id": "上传成功后归类-4"
+    },
+    {
+      "level": "h2",
+      "text": "自定义上传预览",
+      "id": "自定义上传预览-5"
+    },
+    {
+      "level": "h2",
+      "text": "大文件上传",
+      "id": "大文件上传-6"
+    },
+    {
+      "level": "h2",
+      "text": "动态配置",
+      "id": "动态配置-7"
+    },
+    {
+      "level": "h2",
+      "text": "自定义上传",
+      "id": "自定义上传-8"
+    },
+    {
+      "level": "h2",
+      "text": "温馨提示",
+      "id": "温馨提示-9"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<div class=\"form-group\">\n    <label for=\"c-avatar\" class=\"control-label col-xs-12 col-sm-2\">头像:</label>\n    <div class=\"col-xs-12 col-sm-8\">\n        <div class=\"input-group\">\n            <input id=\"c-avatar\" data-rule=\"\" class=\"form-control\" size=\"50\" name=\"row[avatar]\" type=\"text\" value=\"{$row.avatar}\">\n            <div class=\"input-group-addon no-border no-padding\">\n                <span><button type=\"button\" id=\"faupload-avatar\" class=\"btn btn-danger faupload\" data-input-id=\"c-avatar\" data-mimetype=\"image/gif,image/jpeg,image/png,image/jpg,image/bmp\" data-multiple=\"false\" data-preview-id=\"p-avatar\"><i class=\"fa fa-upload\"></i> 上传</button></span>\n                <span><button type=\"button\" id=\"fachoose-avatar\" class=\"btn btn-primary fachoose\" data-input-id=\"c-avatar\" data-mimetype=\"image/*\" data-multiple=\"false\"><i class=\"fa fa-list\"></i> 选择</button></span>\n            </div>\n            <span class=\"msg-box n-right\" for=\"c-avatar\"></span>\n        </div>\n        <ul class=\"row list-inline faupload-preview\" id=\"p-avatar\"></ul>\n    </div>\n</div>",
+      "language": "html"
+    },
+    {
+      "code": "require(['upload'], function(Upload){\n    //fileInput为你的文件选择框，file为文件流，file也可以在fileInput的change事件中通过e.originalEvent.target.files[0];获取\n    var fileInput = $('#fileInput')[0];\n    var file = fileInput.files[0];\n    Upload.api.send(file, function(data, ret, up, file){\n        // 上传成功的回调\n        // 其中data.url为文件URL的链接、data.fullurl为完整URL链接\n    }, function(data, ret, up, file){\n        // 上传失败的回调\n    });\n});",
+      "language": "javascript"
+    },
+    {
+      "code": "<ul class=\"row list-inline faupload-preview\" id=\"p-avatar\" data-template=\"avatartpl\"></ul>",
+      "language": "jsx"
+    },
+    {
+      "code": "<script type=\"text/html\" id=\"avatartpl\">\n    <li class=\"col-xs-3\">\n        <a href=\"<%=fullurl%>\" data-url=\"<%=url%>\" target=\"_blank\" class=\"thumbnail\">\n            <img src=\"<%=fullurl%>\" class=\"img-responsive\">\n        </a>\n        <a href=\"javascript:;\" class=\"btn btn-danger btn-xs btn-trash\"><i class=\"fa fa-trash\"></i></a>\n    </li>\n</script>",
+      "language": "sass"
+    },
+    {
+      "code": "public function _initialize()\n{\n    \\think\\Config::set('upload.mimetype', 'zip,rar');\n    parent::_initialize();\n}",
+      "language": "php"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

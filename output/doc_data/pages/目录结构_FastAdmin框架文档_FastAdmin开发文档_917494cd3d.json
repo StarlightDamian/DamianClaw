@@ -1,0 +1,100 @@
+{
+  "url": "https://doc.fastadmin.net/doc/173.html",
+  "title": "目录结构 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "FastAdmin中每一个应用插件都是一个独立的插件目录，所有的应用插件都是存放在项目目录中的addons目录下。\n\n其中的application和public文件夹会覆盖到根目录，这两个文件夹主要用于我们后台管理功能的开发，我们可以先在后台开发好对应的管理功能后，再将对应的功能打包进插件即可，FastAdmin在插件安装和卸载时会自动进行文件冲突检测，如果遇到冲突的文件会提醒用户是否进行覆盖或删除。\n\nassets这个文件夹很关键，FastAdmin会将assets中的所有文件夹和文件复制到/public/assets/addons/blog/文件夹中去，这个blog即是我们的插件目录名称，assets文件夹中的所有文件不会进行文件冲突检测，/public/assets/addons/blog/这个目录下的文件，我们在视图文件中可以直接通过__ADDON__指向这个路径。因此在开发视图时我们可以先使用相对路径设计，完成后我们再统一加上这个__ADDON__的前缀\n\ncontroller、lang、model和view这四个文件夹是我们插件前台功能的MVC部分，这部分文件夹不会复制或移动到其它位置。\n\nBlog.php这个文件是插件的核心文件，我们可以在这个文件中编写插件安装或卸载时执行的脚本，或者在此插件中编写菜单的生成或删除，同时插件的行为方法也是编写在此文件中的，插件所支持的行为事件会在后面讲到。此文件规则为插件目录名称首字母大写。\n\nbootstrap.js这个文件是插件的启动文件，插件在安装完启用后，FastAdmin会将此文件中的内容合并到/public/assets/js/addons.js中去，你可以在此编写插件核心JS或注册事件，在此JS中可以使用require依赖其它模块。同时在此插件中可以使用Fast、Backend、Lang等全局对象，因为在此之前此类对象已经加载且注册。\n\nconfig.html这个文件是插件配置的模板文件，我们在后台插件管理中点配置按钮时会调用该模板文件进行渲染，如果不存在该模板文件，将调用框架自带的配置模板进行渲染。\n\nconfig.php这个文件是插件的配置文件，我们在后台插件管理中点配置按钮时会保存在此文件，此文件的内容格式为：\n\nconfig.php中的值在FastAdmin任何地方均可使用get_addon_config('blog')来获取配置值\n\ninfo.ini这个文件仅用于保存插件基础信息和开启状态，此文件的内容格式为\n\n注意这个name是插件的唯一标识，不能和现在的插件冲突，其次注意下这个name值，如果我们有涉及到数据库，那个表的前缀也必须是__PREFIX__标识名开头。比如我们下面的__PREFIX__blog_category。\n\ninstall.sql 这个文件中只能是SQL语句，同时在此文件中可以使用__PREFIX__表示数据库表前缀，FastAdmin在安装导入SQL时自动进行替换。此文件的内容格式为",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "目录结构",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "blog\n├── application    //此文件夹中所有文件会覆盖到根目录的/application文件夹\n├── assets        //此文件夹中所有文件会复制到/public/assets/addons/blog文件夹\n├── controller    //此文件夹为插件控制器目录\n├── lang            //此文件夹为插件语言包目录\n├── model            //此文件夹为插件模型目录\n├── public        //此文件夹中所有文件会覆盖到根目录的/public文件夹\n├── view            //此文件夹为插件视图目录\n├── Blog.php        //此文件为插件核心安装卸载控制器,必需存在\n├── bootstrap.js    //此文件为插件JS启动文件\n├── LICENSE        //版权文件\n├── config.php    //插件配置文件,我们在后台插件管理中点配置按钮时配置的文件,必需存在\n├── config.html    //插件配置模板文件,我们在后台插件管理中点配置按钮时会调用此模板文件，可选\n├── info.ini        //插件信息文件,用于保存插件基本信息，插件开启状态等,必需存在\n└── install.sql    //插件数据库安装文件,此文件仅在插件安装时会进行导入",
+      "language": "unknown"
+    },
+    {
+      "code": "<?php\n\nreturn [\n    [\n        //配置名称,该值在当前数组配置中确保唯一\n        'name'    => 'yourname',\n        //配置标题\n        'title'   => '配置标题',\n        //配置类型,支持string/text/number/datetime/array/select/selects/image/images/file/files/checkbox/radio/bool\n        'group'    => '分组一', //配置分组，只支持FastAdmin1.3.3+\n        'visible'    => '配置名=验证值', //可视条件，只有满足条件该配置才会显示，只支持FastAdmin1.3.3+\n        'type'    => 'string',\n        //配置select/selects/checkbox/radio/bool时显示的列表项\n        'content' => [\n            '1' => '显示',\n            '0' => '不显示'\n        ],\n        //配置值\n        'value'   => '1',\n        //配置验证规则,更多规则可参考nice-validator文件\n        'rule'    => 'required',\n        'msg'     => '验证失败提示文字',\n        'tip'     => '字段填写帮助',\n        'ok'      => '验证成功提示文字'\n    ],\n    [\n        'name'    => 'yourname2',\n        'title'   => '配置标题2',\n        'group'    => '分组二', //配置分组，只支持FastAdmin1.3.3+\n        'type'    => 'radio',\n        'options' => [\n            '1' => '显示',\n            '0' => '不显示'\n        ],\n        'value'   => '1',\n        'rule'    => 'required',\n        'msg'     => '验证失败提示文字',\n        'tip'     => '字段填写帮助',\n        'ok'      => '验证成功提示文字'\n    ],\n    [\n        'name'    => '__tips__',\n        'title'   => '温馨提示',\n        'type'    => 'string',\n        'content' =>\n            array(),\n        'value'   => '该提示将出现的插件配置头部，通常用于提示和说明',\n        'rule'    => '',\n        'msg'     => '',\n        'tip'     => '',\n        'ok'      => '',\n        'extend'  => '',\n    ],\n];",
+      "language": "php"
+    },
+    {
+      "code": "name = blog\ntitle = 博客插件\nintro = 响应式博客插件，包含日志、评论、分类、归档等\nauthor = FastAdmin\nwebsite = https://www.fastadmin.net\nversion = 1.0.0\nstate = 1",
+      "language": "unknown"
+    },
+    {
+      "code": "#我们在创建数据库时建议加上IF NOT EXISTS\nCREATE TABLE IF NOT EXISTS `__PREFIX__blog_category` (\n  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,\n  `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父分类ID',\n  `name` varchar(30) NOT NULL DEFAULT '' COMMENT '分类名称',\n  `nickname` varchar(50) NOT NULL DEFAULT '' COMMENT '分类昵称',\n  `flag` set('hot','index','recommend') NOT NULL DEFAULT '' COMMENT '分类标志',\n  `image` varchar(100) NOT NULL DEFAULT '' COMMENT '图片',\n  `keywords` varchar(255) NOT NULL DEFAULT '' COMMENT '关键字',\n  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',\n  `diyname` varchar(30) NOT NULL DEFAULT '' COMMENT '自定义名称',\n  `createtime` bigint(16) unsigned DEFAULT NULL COMMENT '创建时间',\n  `updatetime` bigint(16) unsigned DEFAULT NULL COMMENT '更新时间',\n  `weigh` int(10) NOT NULL DEFAULT '0' COMMENT '权重',\n  `status` varchar(30) NOT NULL DEFAULT '' COMMENT '状态',\n  PRIMARY KEY (`id`),\n  KEY `weigh` (`weigh`,`id`),\n  KEY `pid` (`pid`)\n) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4_general_ci COMMENT='博客分类表';\n\nINSERT INTO `__PREFIX__blog_category` VALUES ('1', '0', '默认分类', 'default', '', '/assets/img/qrcode.png', '', '', '', '1502112587', '1502112587', '0', 'normal');",
+      "language": "sql"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

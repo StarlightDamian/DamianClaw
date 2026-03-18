@@ -1,0 +1,208 @@
+{
+  "url": "https://doc.fastadmin.net/doc/frontend.html",
+  "title": "前端 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "FastAdmin的前端部分使用或涉及到的是RequireJS,jQuery,AdminLTE,Bower,Less,CSS。其中：\n\nRequireJS主要是用于JS的模块化加载。\n\nLess主要是用于我们编写LESS和编译成CSS代码。\n\n在阅读接下来的文档之前建议先简单的了解下RequireJS和Bower，而jQuery是我们必须要掌握的工具库\n\nFastAdmin中前端的常用的第三方插件有Layer,Toastr，Layer用于弹窗，Toastr用于提示。\n\nassets主要存在我们框架所需要使用到的静态资源。\n\nassets/js/backend主要存在后台控制器所对应的JS模块。\n\nassets/libs主要存在第三方的插件。\n\nassets/less主要存在Less文件。\n\nassets/img主要存在图片相关文件。\n\nassets/css主要存在CSS样式相关文件。\n\nassets/addons主要存放插件的相关静态资源。\n\n在控制器章节我们有提到每个控制器都对应一个JS模块，控制器名称和JS中模块名称是一一对应的。\n\n比如我们的控制器是application/admin/controller/Article.php，则我们JS中对应的JS模块是public/assets/js/backend/article.js。\n\n如果我们的控制器是application/admin/controller/Member/Teacher.php，则我们JS中对应的JS模块是public/assets/js/backend/member/teacher.js。\n\n每一个控制器请求的方法对应JS模块中一个方法。\n\n比如控制器Article.php中的index方法，对应的是JS的article模块中的Controller.index方法，如果我们添加了自己的方法detail方法，则对应Controller.detail方法。\n\n我们可以看到该模块第一行为RequireJS标准语法，意思是此模块依赖'jquery', 'bootstrap', 'backend', 'table', 'form'几个模块，同时将它们加载为$, undefined, Backend, Table, Form这几个对应，我们就可以放心大胆在其中使用这几个对象了。\n\n其中有定义一个Controller 对象，它有index/add/edit/api四个方法，这四个方法分别与我们控制器中的方法一一对应。\n\n在FastAdmin中我们封装了非常多实用的模块类便于我们使用。以下做详细介绍。\n\n表单模块主要用于框架表单组件元素的渲染和事件绑定，当我们自定义了一个表单后，必须使用表单模块中Form.api.bindevent进行绑定表单，否则不会有任何作用。\n\n以上代码表格当表单提交处理成功后提示成功，处理失败提示失败。\n\n上传模块主要用于框架JS端的上传逻辑，默认采用upload进行上传，也可以采用Ajax的方法进行上传，upload的方法上传支持上传进度展示。\n\n以上代码表格当表单提交处理成功后提示成功，处理失败提示失败。\n\n表格模块主要用于渲染数据列表，对数据列表进行排序、过滤、筛选、绑定事件、增删改查等等操作。我们在CRUD一键生成后看到的列表就是使用表格模块进行完成的。\n\n表格的详细介绍可以查看一张图解表格：https://ask.fastadmin.net/article/323.html",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "前端",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "基础介绍",
+      "id": "基础介绍-1"
+    },
+    {
+      "level": "h2",
+      "text": "目录结构",
+      "id": "目录结构-2"
+    },
+    {
+      "level": "h2",
+      "text": "标准模块",
+      "id": "标准模块-3"
+    },
+    {
+      "level": "h2",
+      "text": "工具模块",
+      "id": "工具模块-4"
+    },
+    {
+      "level": "h3",
+      "text": "表单(Form)",
+      "id": "表单(Form)-1"
+    },
+    {
+      "level": "h4",
+      "text": "引入方式",
+      "id": "引入方式-1"
+    },
+    {
+      "level": "h4",
+      "text": "内部方法",
+      "id": "内部方法-2"
+    },
+    {
+      "level": "h4",
+      "text": "使用示例",
+      "id": "使用示例-3"
+    },
+    {
+      "level": "h3",
+      "text": "上传(Upload)",
+      "id": "上传(Upload)-2"
+    },
+    {
+      "level": "h4",
+      "text": "引入方式",
+      "id": "引入方式-4"
+    },
+    {
+      "level": "h4",
+      "text": "内部方法",
+      "id": "内部方法-5"
+    },
+    {
+      "level": "h4",
+      "text": "使用示例",
+      "id": "使用示例-6"
+    },
+    {
+      "level": "h3",
+      "text": "表格(Table)",
+      "id": "表格(Table)-3"
+    },
+    {
+      "level": "h4",
+      "text": "引入方式",
+      "id": "引入方式-7"
+    },
+    {
+      "level": "h4",
+      "text": "内部方法",
+      "id": "内部方法-8"
+    },
+    {
+      "level": "h4",
+      "text": "使用示例",
+      "id": "使用示例-9"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "public\n├── assets\n│   ├── addons\n│   ├── css\n│   ├── fonts\n│   ├── img\n│   ├── js\n│   │   ├── backend\n│   │   ├── frontend\n│   ├── less\n│   └── libs",
+      "language": "unknown"
+    },
+    {
+      "code": "define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefined, Backend, Table, Form) {\n\n    var Controller = {\n        index: function () {\n            // 初始化表格参数配置\n            Table.api.init({\n                extend: {\n                    index_url: 'category/index',\n                    add_url: 'category/add',\n                    edit_url: 'category/edit',\n                    del_url: 'category/del',\n                    multi_url: 'category/multi',\n                    dragsort_url: '',\n                    table: 'category',\n                }\n            });\n\n            var table = $(\"#table\");\n\n            // 初始化表格\n            table.bootstrapTable({\n                url: $.fn.bootstrapTable.defaults.extend.index_url,\n                escape: false,\n                pk: 'id',\n                sortName: 'weigh',\n                pagination: false,\n                commonSearch: false,\n                columns: [\n                    [\n                        {checkbox: true},\n                        {field: 'id', title: __('Id')},\n                        {field: 'type', title: __('Type')},\n                        {field: 'name', title: __('Name'), align: 'left'},\n                        {field: 'nickname', title: __('Nickname')},\n                        {field: 'flag', title: __('Flag'), operate: false, formatter: Table.api.formatter.flag},\n                        {field: 'image', title: __('Image'), operate: false, formatter: Table.api.formatter.image},\n                        {field: 'weigh', title: __('Weigh')},\n                        {field: 'status', title: __('Status'), operate: false, formatter: Table.api.formatter.status},\n                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}\n                    ]\n                ]\n            });\n\n            // 为表格绑定事件\n            Table.api.bindevent(table);\n        },\n        add: function () {\n            Controller.api.bindevent();\n        },\n        edit: function () {\n            Controller.api.bindevent();\n        },\n        api: {\n            bindevent: function () {\n                Form.api.bindevent($(\"form[role=form]\"));\n            }\n        }\n    };\n    return Controller;\n});",
+      "language": "sass"
+    },
+    {
+      "code": "require(['form'], function(Form){});",
+      "language": "javascript"
+    },
+    {
+      "code": "//为表单绑定事件，将自动绑定上传/富文本/下拉框/selectpage/表单验证等功能，FastAdmin中最常用的方法，\nForm.api.bindevent(form, success, error, submit);\n\n//表单自定义事件存储对象\nForm.api.custom\n\n//提交表单的方法，在表单完成验证后进行提交\nForm.api.submit(form, success, error, submit);\n\n//以下事件为具体第三方插件实现的方法，可以在调用`Form.api.bindevent`之前修改对应的方法来修改相应功能\nForm.events.bindevent(form)\nForm.events.citypicker(form)\nForm.events.cxselect(form)\nForm.events.datetimepicker(form)\nForm.events.faselect(form)\nForm.events.fieldlist(form)\nForm.events.faupload(form)\nForm.events.selectpage(form)\nForm.events.selectpicker(form)\nForm.events.slider(form)\nForm.events.autocomplete(form)\nForm.events.tagsinput(form)\nForm.events.validator(form, success, error, submit)",
+      "language": "swift"
+    },
+    {
+      "code": "Form.api.bindevent($(\"form[role=form]\"), function(data, ret){\n    //如果我们需要在提交表单成功后做跳转，可以在此使用location.href=\"链接\";进行跳转\n    Toastr.success(\"成功\");\n}, function(data, ret){\n      Toastr.success(\"失败\");\n}, function(success, error){\n    //bindevent的第四个参数为提交前的回调\n    //如果我们需要在表单提交前做一些数据处理，则可以在此方法处理\n    //注意如果我们需要阻止表单，可以在此使用return false;即可\n    //如果我们处理完成需要再次提交表单则可以使用submit提交,注意这里的this应当为表单元素如下\n    //Form.api.submit(this, success, error);\n    return false;\n});",
+      "language": "sass"
+    },
+    {
+      "code": "require(['upload'], function(Upload){});",
+      "language": "javascript"
+    },
+    {
+      "code": "//为表单中的上传按钮绑定上传事件\nUpload.api.upload(element, onUploadSuccess, onUploadError);\n\n//上传自定义事件存储对象\nUpload.api.custom\n\n//采用Ajax的方法进行上传文件\n//file: 文件流\n//onUploadSuccess: 成功的回调\n//onUploadError: 失败的回调\nUpload.api.send(file, onUploadSuccess, onUploadError);\n\n//plupload上传组件配置\nUpload.config.classname\nUpload.config.container\nUpload.config.previewtpl\n\n//upload上传事件配置\nUpload.event.onBeforeUpload(up, file);\nUpload.event.onFileAdded(up, files);\nUpload.event.onPostInit(up);\nUpload.event.onUploadError(ret, onUploadError, button);\nUpload.event.onUploadResponse(response);\nUpload.event.onUploadSuccess(ret, onUploadSuccess, button);",
+      "language": "unknown"
+    },
+    {
+      "code": "//使用Plupload上传\nUpload.api.plupload($(\".plupload\"), function(data, ret){\n    Toastr.success(\"成功\");\n}, function(data, ret){\n      Toastr.success(\"失败\");\n});\n//使用Ajax上传\nUpload.api.send(file, function(data, ret){\n    Toastr.success(\"成功\");\n}, function(data, ret){\n      Toastr.success(\"失败\");\n});",
+      "language": "r"
+    },
+    {
+      "code": "require(['table'], function(Table){});",
+      "language": "javascript"
+    },
+    {
+      "code": "//为渲染的表格绑定上增删改查等事件\nTable.api.bindevent(table);\n//生成按钮链接\nTable.api.buttonlink(column, buttons, value, row, index, type);\n//表格格式化对象集，包含多个格式化数据的方法\nTable.api.formatter\n//根据行获取行数据\nTable.api.getrowdata(table, index)\n//初始化表格配置\nTable.api.init(defaults, columnDefaults, locales)\n//表格批量操作的方法\nTable.api.multi\n//替换URL链接中的{变量名}\nTable.api.replaceurl\n//获取选中的ID\nTable.api.selectedids\n\n//Bootstrap-table表格默认列的配置\nTable.columnDefaults\n//表格相关DOM元素类配置\nTable.config\n//Bootstrap-table默认config配置\nTable.defaults\n//已经渲染的表格对象\nTable.list",
+      "language": "unknown"
+    },
+    {
+      "code": "// 初始化表格参数配置\nTable.api.init({\n    extend: {\n        index_url: 'category/index',\n        add_url: 'category/add',\n        edit_url: 'category/edit',\n        del_url: 'category/del',\n        multi_url: 'category/multi',\n        dragsort_url: '',\n        table: 'category',\n    }\n});\n\nvar table = $(\"#table\");\n\n// 初始化表格\ntable.bootstrapTable({\n    url: $.fn.bootstrapTable.defaults.extend.index_url,\n    escape: false,\n    pk: 'id',\n    sortName: 'weigh',\n    pagination: false,\n    commonSearch: false,\n    columns: [\n        [\n            {checkbox: true},\n            {field: 'id', title: __('Id')},\n            {field: 'type', title: __('Type')},\n            {field: 'name', title: __('Name'), align: 'left'},\n            {field: 'nickname', title: __('Nickname')},\n            {field: 'flag', title: __('Flag'), operate: false, formatter: Table.api.formatter.flag},\n            {field: 'image', title: __('Image'), operate: false, formatter: Table.api.formatter.image},\n            {field: 'weigh', title: __('Weigh')},\n            {field: 'status', title: __('Status'), operate: false, formatter: Table.api.formatter.status},\n            {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}\n        ]\n    ]\n});\n\n// 为表格绑定事件\nTable.api.bindevent(table);",
+      "language": "json"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}

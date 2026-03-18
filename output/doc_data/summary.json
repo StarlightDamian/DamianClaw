@@ -1,0 +1,249 @@
+{
+  "name": "doc",
+  "total_pages": 60,
+  "base_url": "https://doc.fastadmin.net/doc",
+  "llms_txt_detected": false,
+  "llms_txt_variant": null,
+  "pages": [
+    {
+      "title": "介绍 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc"
+    },
+    {
+      "title": "介绍 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/index.html"
+    },
+    {
+      "title": "安装 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/install.html"
+    },
+    {
+      "title": "快速开始 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/1589.html"
+    },
+    {
+      "title": "架构 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/construct.html"
+    },
+    {
+      "title": "配置 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/2461.html"
+    },
+    {
+      "title": "框架 env 变量配置 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/2483.html"
+    },
+    {
+      "title": "框架默认配置 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/2484.html"
+    },
+    {
+      "title": "模块 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/module.html"
+    },
+    {
+      "title": "后台模块 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/168.html"
+    },
+    {
+      "title": "前台模块 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/166.html"
+    },
+    {
+      "title": "API 模块 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/167.html"
+    },
+    {
+      "title": "公共模块 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/169.html"
+    },
+    {
+      "title": "一键生成CRUD - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/crud.html"
+    },
+    {
+      "title": "一键生成菜单 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/161.html"
+    },
+    {
+      "title": "一键压缩打包 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/162.html"
+    },
+    {
+      "title": "一键生成API文档 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/163.html"
+    },
+    {
+      "title": "一键管理插件 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/164.html"
+    },
+    {
+      "title": "其他命令 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/165.html"
+    },
+    {
+      "title": "多语言 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/language.html"
+    },
+    {
+      "title": "控制器 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/controller.html"
+    },
+    {
+      "title": "前端 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/frontend.html"
+    },
+    {
+      "title": "文件上传 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/177.html"
+    },
+    {
+      "title": "表单验证 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/179.html"
+    },
+    {
+      "title": "城市选择 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/180.html"
+    },
+    {
+      "title": "日期时间 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/181.html"
+    },
+    {
+      "title": "附件选择 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/183.html"
+    },
+    {
+      "title": "键值组件(Fieldlist) - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/184.html"
+    },
+    {
+      "title": "开关组件 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/185.html"
+    },
+    {
+      "title": "富文本编辑器 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/187.html"
+    },
+    {
+      "title": "日期时间区间 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/736.html"
+    },
+    {
+      "title": "自动完成(Autocomplete) - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/1206.html"
+    },
+    {
+      "title": "标签输入 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/1207.html"
+    },
+    {
+      "title": "表格 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/table.html"
+    },
+    {
+      "title": "表格参数 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/190.html"
+    },
+    {
+      "title": "列参数 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/191.html"
+    },
+    {
+      "title": "方法 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/192.html"
+    },
+    {
+      "title": "多语言 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/193.html"
+    },
+    {
+      "title": "事件 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/194.html"
+    },
+    {
+      "title": "格式化 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/195.html"
+    },
+    {
+      "title": "依赖 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/196.html"
+    },
+    {
+      "title": "Table对象 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/197.html"
+    },
+    {
+      "title": "扩展 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/1262.html"
+    },
+    {
+      "title": "函数 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/1263.html"
+    },
+    {
+      "title": "辅助类 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/1264.html"
+    },
+    {
+      "title": "插件 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/addon.html"
+    },
+    {
+      "title": "插件市场 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/175.html"
+    },
+    {
+      "title": "目录结构 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/173.html"
+    },
+    {
+      "title": "行为事件 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/174.html"
+    },
+    {
+      "title": "插件安装 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/176.html"
+    },
+    {
+      "title": "插件配置 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/1864.html"
+    },
+    {
+      "title": "安全建议 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/3886.html"
+    },
+    {
+      "title": "安全建议 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/security.html"
+    },
+    {
+      "title": "代码安全 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/170.html"
+    },
+    {
+      "title": "服务器安全 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/171.html"
+    },
+    {
+      "title": "常见问题 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/faq.html"
+    },
+    {
+      "title": "参与开源生态贡献 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/contributing.html"
+    },
+    {
+      "title": "贡献代码 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/2482.html"
+    },
+    {
+      "title": "参考文档列表 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/doc/1452.html"
+    },
+    {
+      "title": "数据库 - FastAdmin框架文档 - FastAdmin开发文档",
+      "url": "https://doc.fastadmin.net/docs/database.html"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "url": "https://doc.fastadmin.net/doc/167.html",
+  "title": "API 模块 - FastAdmin框架文档 - FastAdmin开发文档",
+  "content": "这里的API指整个API接口模块，这里仅做部分API功能模块的使用介绍，如果需要查看前端开发和后端开发文档，请查看相对应的文档。\n\nFastAdmin的API模块完全遵循ThinkPHP5的开发规范，在此基础上我们在API模块中提供了一个和前台相同的权限验证模块，我们可以方便快捷的控制我们的可访问权限。\n\nFastAdmin的API模块采用默认的路由方式进行匹配，当然我们完全可以自定义我们的路由规则，达到个性化URL接口的目的。\n\nAPI的所有功能模块的控制器都是继承于application/common/controller/Api.php这个基类控制器。\n\n在基类控制器中我们有定义一些基础属性和通用方法，首先我们看看基础属性。\n\n以上的属性和方法我们都可以通过在当前控制器定义来达到覆盖的目的。\n\n我们在FastAdmin的API中集成了简单的会员接口，可以进行会员的注册、登录、找回密码、会员中心、修改个人资料、修改密码等操作。\n\n会员模块可用于进行API会员功能开发时使用。此处的会员模块和前台中的会员模块账号是相通的，但他们登录时是不会互相影响的，可以同时登录。\n\nFastAdmin的会员模块有注册几个事件，我们可以在事件中自定义我们的操作。你可以按照以下的方式监听相应的事件行为。\n\n我们在FastAdmin的API中集成了简单的短信模块，可以根据相对应的事件进行短信的发送和检测是否正确等功能。\n\n在使用短信模块时请确保已经正确在后台正确安装并启用了第三方短信插件。\n\n公共模块一般用于客户端应用初始化时调用，例如APP的版本检测、APP的首屏轮换图等功能。\n\n检测模块一般用于检测客户端提交数据的有效性验证，也常用于在前台进行数据录入时的实时有效性校验。",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "API 模块",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "流程介绍",
+      "id": "流程介绍-1"
+    },
+    {
+      "level": "h2",
+      "text": "基类解析",
+      "id": "基类解析-2"
+    },
+    {
+      "level": "h2",
+      "text": "功能模块",
+      "id": "功能模块-3"
+    },
+    {
+      "level": "h3",
+      "text": "会员模块",
+      "id": "会员模块-1"
+    },
+    {
+      "level": "h3",
+      "text": "短信模块",
+      "id": "短信模块-2"
+    },
+    {
+      "level": "h3",
+      "text": "公共模块",
+      "id": "公共模块-3"
+    },
+    {
+      "level": "h3",
+      "text": "检测模块",
+      "id": "检测模块-4"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/**\n * @var array 前置操作方法列表\n */\nprotected $beforeActionList = [];\n\n/**\n * 无需登录的方法,同时也就不需要鉴权了\n * @var array\n */\nprotected $noNeedLogin = [];\n\n/**\n * 无需鉴权的方法,但需要登录\n * @var array\n */\nprotected $noNeedRight = [];\n\n/**\n * 权限Auth\n * @var Auth \n */\nprotected $auth = null;",
+      "language": "php"
+    },
+    {
+      "code": "/**\n * 加载语言文件\n * @param string $name\n */\nprotected function loadlang($name)\n{\n}\n\n/**\n * 操作成功返回的数据\n * @param string $msg   提示信息\n * @param mixed $data   要返回的数据\n * @param int   $code   错误码，默认为1\n * @param string $type  输出类型\n * @param array $header 发送的 Header 信息\n */\nprotected function success($msg = '', $data = null, $code = 1, $type = null, array $header = [])\n{\n}\n\n/**\n * 操作失败返回的数据\n * @param string $msg   提示信息\n * @param mixed $data   要返回的数据\n * @param int   $code   错误码，默认为0\n * @param string $type  输出类型\n * @param array $header 发送的 Header 信息\n */\nprotected function error($msg = '', $data = null, $code = 0, $type = null, array $header = [])\n{\n}\n\n/**\n * 返回封装后的 API 数据到客户端\n * @access protected\n * @param mixed  $msg    提示信息\n * @param mixed  $data   要返回的数据\n * @param int    $code   错误码，默认为0\n * @param string $type   输出类型，支持json/xml/jsonp\n * @param array  $header 发送的 Header 信息\n * @return void\n * @throws HttpResponseException\n */\nprotected function result($msg, $data = null, $code = 0, $type = null, array $header = [])\n{\n}\n\n/**\n * 前置操作\n * @access protected\n * @param  string $method  前置操作方法名\n * @param  array  $options 调用参数 ['only'=>[...]] 或者 ['except'=>[...]]\n * @return void\n */\nprotected function beforeAction($method, $options = [])\n{\n}\n\n/**\n * 验证数据\n * @access protected\n * @param  array        $data     数据\n * @param  string|array $validate 验证器名或者验证规则数组\n * @param  array        $message  提示信息\n * @param  bool         $batch    是否批量验证\n * @param  mixed        $callback 回调方法（闭包）\n * @return array|string|true\n * @throws ValidateException\n */\nprotected function validate($data, $validate, $message = [], $batch = false, $callback = null)\n{\n}",
+      "language": "php"
+    },
+    {
+      "code": "//登录成功后的事件\nHook::add('user_login_successed', function ($user) {\n});\n//注册成功后的事件\nHook::add('user_register_successed', function ($user) {\n});\n//会员删除后的事件\nHook::add('user_delete_successed', function ($user) {\n});\n//会员注销后的事件\nHook::add('user_logout_successed', function ($user) {\n});",
+      "language": "php"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://doc.fastadmin.net/doc",
+    "https://doc.fastadmin.net/doc/index.html",
+    "https://doc.fastadmin.net/doc/install.html",
+    "https://doc.fastadmin.net/doc/1589.html",
+    "https://doc.fastadmin.net/doc/construct.html",
+    "https://doc.fastadmin.net/doc/2461.html",
+    "https://doc.fastadmin.net/doc/2483.html",
+    "https://doc.fastadmin.net/doc/2484.html",
+    "https://doc.fastadmin.net/doc/module.html",
+    "https://doc.fastadmin.net/doc/168.html",
+    "https://doc.fastadmin.net/doc/166.html",
+    "https://doc.fastadmin.net/doc/167.html",
+    "https://doc.fastadmin.net/doc/169.html",
+    "https://doc.fastadmin.net/doc/command.html",
+    "https://doc.fastadmin.net/doc/crud.html",
+    "https://doc.fastadmin.net/doc/161.html",
+    "https://doc.fastadmin.net/doc/162.html",
+    "https://doc.fastadmin.net/doc/163.html",
+    "https://doc.fastadmin.net/doc/164.html",
+    "https://doc.fastadmin.net/doc/165.html",
+    "https://doc.fastadmin.net/doc/language.html",
+    "https://doc.fastadmin.net/doc/database.html",
+    "https://doc.fastadmin.net/doc/controller.html",
+    "https://doc.fastadmin.net/doc/frontend.html",
+    "https://doc.fastadmin.net/doc/component.html",
+    "https://doc.fastadmin.net/doc/177.html",
+    "https://doc.fastadmin.net/doc/178.html",
+    "https://doc.fastadmin.net/doc/179.html",
+    "https://doc.fastadmin.net/doc/180.html",
+    "https://doc.fastadmin.net/doc/181.html",
+    "https://doc.fastadmin.net/doc/182.html",
+    "https://doc.fastadmin.net/doc/183.html",
+    "https://doc.fastadmin.net/doc/184.html",
+    "https://doc.fastadmin.net/doc/185.html",
+    "https://doc.fastadmin.net/doc/186.html",
+    "https://doc.fastadmin.net/doc/187.html",
+    "https://doc.fastadmin.net/doc/736.html",
+    "https://doc.fastadmin.net/doc/1206.html",
+    "https://doc.fastadmin.net/doc/1207.html",
+    "https://doc.fastadmin.net/doc/1253.html",
+    "https://doc.fastadmin.net/doc/table.html",
+    "https://doc.fastadmin.net/doc/189.html",
+    "https://doc.fastadmin.net/doc/190.html",
+    "https://doc.fastadmin.net/doc/191.html",
+    "https://doc.fastadmin.net/doc/192.html",
+    "https://doc.fastadmin.net/doc/193.html",
+    "https://doc.fastadmin.net/doc/194.html",
+    "https://doc.fastadmin.net/doc/195.html",
+    "https://doc.fastadmin.net/doc/196.html",
+    "https://doc.fastadmin.net/doc/197.html",
+    "https://doc.fastadmin.net/doc/1262.html",
+    "https://doc.fastadmin.net/doc/1263.html",
+    "https://doc.fastadmin.net/doc/1264.html",
+    "https://doc.fastadmin.net/doc/addon.html",
+    "https://doc.fastadmin.net/doc/175.html",
+    "https://doc.fastadmin.net/doc/173.html",
+    "https://doc.fastadmin.net/doc/174.html",
+    "https://doc.fastadmin.net/doc/176.html",
+    "https://doc.fastadmin.net/doc/1864.html",
+    "https://doc.fastadmin.net/doc/3886.html",
+    "https://doc.fastadmin.net/doc/security.html",
+    "https://doc.fastadmin.net/doc/170.html",
+    "https://doc.fastadmin.net/doc/171.html",
+    "https://doc.fastadmin.net/doc/faq.html",
+    "https://doc.fastadmin.net/doc/contributing.html",
+    "https://doc.fastadmin.net/doc/2482.html",
+    "https://doc.fastadmin.net/doc/1452.html"
+  ]
+}
