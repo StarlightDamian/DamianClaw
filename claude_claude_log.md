@@ -47,3 +47,6 @@ Tip: Run claude --continue or claude --resume to resume a conversation
 
 ```
 
+/code-review 如果设计到python代码相关，帮我保存到D:\03_software_engineering\05_github\DamianClaw\src 首先你要进行代码的规划 [Pasted text #1 +9 lines] [Pasted text #2 +10 lines]     
+  这些都是我后续要完成的事情，你先要把能力和对象解耦，高内聚低耦合，其次代码要精简。规划后新建对应的文件夹，后续python代码直接放入其中，并且进行更新。文件结构树和技术框架写入D:\03_so  
+  ftware_engineering\05_github\DamianClaw\CLAUDE.md
