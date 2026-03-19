@@ -1,0 +1,16 @@
+===== TUN/TAP - Wikipedia (通过 Clash 代理获取) =====
+
+### 简介
+
+Incomputer networking,TUNandTAParekernelvirtual networkdevices. Being network devices supported entirely in software, they differ from ordinary network devices which are backed by physicalnetwork adapters.
+
+TheUniversal TUN/TAP Driveroriginated in 2000 as a merger of the corresponding drivers in Solaris, Linux and BSD.[1]The driver continues to be maintained as part of the Linux[2]and FreeBSD[3][4][5]kernels.
+
+Though both are for tunneling purposes, TUN and TAP cannot be used together because they transmit and receive packets at different layers of the network stack. TUN, namelynetwork TUNnel, simulates anetwork layerdevice and operates inlayer 3carryingIPpackets. TAP, namelynetwork TAP, simulates alink layerdevice and operates inlayer 2carryingEthernetframes. TUN is used withrouting. TAP can be used to create auser spacenetwork bridge.[2]
+
+Packets sent by anoperating systemvia a TUN/TAP device are delivered to a user space program which attaches itself to the device. A user space program may also pass packets into a TUN/TAP device. In this case the TUN/TAP device delivers (or "injects") these packets to the operating-systemnetwork stackthus emulating their reception from an external source.[2]
+
+Virtual private networks
+
+
+完整页面: https://en.wikipedia.org/wiki/TUN/TAP

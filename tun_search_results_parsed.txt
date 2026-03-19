@@ -1,0 +1,31 @@
+Google 搜索 'tun' 解析结果
+代理: 127.0.0.1:7890 (Clash)
+============================================================
+
+1. Tun - mihomo docs
+   URL: https://wiki.metacubex.one/en/config/inbound/tun/
+
+2. TUN/TAP
+   URL: https://en.wikipedia.org/wiki/TUN/TAP
+
+3. TUN in Traditional Chinese - Cambridge Dictionary
+   URL: https://dictionary.cambridge.org/dictionary/english-chinese-traditional/tun
+
+4. Linux Tun/Tap 介绍| 赵化冰的博客
+   URL: https://www.zhaohuabing.com/post/2020-02-24-linux-taptun/
+
+5. Prof. Hein Min TUN 黃世萬教授
+   URL: https://sphpc.cuhk.edu.hk/heinmintun/
+
+6. Universal TUN/TAP device driver
+   URL: https://docs.kernel.org/networking/tuntap.html
+
+7. TUN Definition & Meaning
+   URL: https://www.merriam-webster.com/dictionary/tun
+
+8. TUN - Apps on Google Play
+   URL: https://play.google.com/store/apps/details?id=com.tungroup.app
+
+9. Tun-Group 惇聚．官方網站
+   URL: https://www.tun-grp.com/
+
